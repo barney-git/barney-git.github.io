@@ -52,19 +52,51 @@
       </div>
       <h3>Brief</h3>
       <p class="desc">
-        Replace this paragraph with a short write-up: the mechanism,
-        actuation and control approach, IMU stabilisation, and what
-        changed across design iterations.
+        Working within a 6 person team to design a
+        wing and camera gimbal for a fixed wing UAV
+        , I was responsible for the design and 
+        manufacture of the articulated gimbal assembly,
+        including the actuation and control systems.
+        The dual axis gimbal was to be powered by an
+        Arduino microcontroller,
+        IMU and two servo motors.
       </p>
       <h3>Design and SOLIDWORKS modelling</h3>
-      <h3>Arduino programming and control systems</h3>
-      <h3>Manufacture and rapid prototyping</h3>
-      <h3>Iteration and testing</h3>
-      <h3>Results</h3>
+      <p class="desc">
+        I modelled a fully <strong>paramaterised, equation-driven</strong>
+        assembly allowing for rapid iteration and
+        testing of design configurations and
+        tolerances without the need to remodel the assembly
+        from scratch.
+      </p>
+      <p class="desc">
+        The assembly was <strong>fully constrained and
+        articulated</strong>, allowing me to demonstrate
+        and evaluate the full range of
+        motion of the gimbal and any potential
+        collisions before manufacturing.
+      </p>
+      <h3>Arduino programming</h3>
+      <p class="desc">
+        I developed an Arduino program to decode incoming
+        IMU data.
+      </p>
+      <h3>Control systems</h3>
+      <p class="desc">
+        I initially developed a PID control system and 
+        complimentary filter to stabilise the gimbal in response to IMU data.
+        The PID proved unreliable however, and I later
+        developed a distinct control system.
+      </p>
       <div class="media">
         <img src="assets/gimbal_manufacture.jpg" alt="Gimbal assembly in manufacturing process">
         <span class="caption">FIG. 2 — Gimbal assembly</span>
       </div>
+      <h3>Manufacture and rapid prototyping</h3>
+      <h3>3D printing</h3>
+      <h3>Laser cutting</h3>
+      <h3>Iteration and testing</h3>
+      <h3>Results</h3>
       <div class="media">
         <img src="assets/gimbalResults.jpg" alt="Scoring plots from gimbal testing">
         <span class="caption">FIG. 2 — Gimbal test results</span>
