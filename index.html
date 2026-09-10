@@ -1,27 +1,180 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Barnaby Crossman Portfolio</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Barnaby Crossman — Aeronautics &amp; Astronautics</title>
+<meta name="description" content="Engineering portfolio of Barnaby Crossman — UAV design, aerodynamics, and CAD work.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Barnaby Crossman</h1>
 
-    <h2>Aeronautics & Astronautics Student</h2>
+  <!-- Sheet border + corner trim marks, drawn in on load -->
+  <svg class="frame" aria-hidden="true" focusable="false">
+    <rect class="frame-rect" x="1.4%" y="2%" width="97.2%" height="96%"></rect>
+  </svg>
 
-    <p>
-        Engineering portfolio showcasing UAV design,
-        aerodynamics projects and CAD work.
-    </p>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-    <h3>Projects</h3>
+  <header class="hero" id="top">
+    <div class="hero-inner">
+      <h1>Barnaby Crossman</h1>
+      <p class="role">Aeronautics &amp; Astronautics Engineering Undergraduate at the University of Southampton</p>
+      <p class="intro">
+        Engineering portfolio showcasing UAV design, aerodynamics
+        projects, and CAD work.
+      </p>
+      <nav class="sheet-index" aria-label="Project sheets">
+        <a href="#sheet-01"><span class="idx">01</span>Gimbal</a>
+        <a href="#sheet-02"><span class="idx">02</span>Fixed&nbsp;Wing</a>
+        <a href="#sheet-03"><span class="idx">03</span>Glider</a>
+      </nav>
+    </div>
+  </header>
 
-    <ul>
-        <li>UAV Gimbal Design</li>
-            <video width="800" autoplay loop muted>
-                <source src="Rotate and Explode.mp4" type="video/mp4">
-            </video>
-        <li>Fixed Wing UAV</li>
-        <li>Wooden Glider Competition</li>
-    </ul>
+  <main id="main">
+
+    <section class="sheet" id="sheet-01">
+      <div class="sheet-head">
+        <span class="sheet-no">SHEET 01 / 07</span>
+        <span class="sheet-tag">UAV&#8212;GMB</span>
+      </div>
+      <h2>Year 2 Fixed Wing UAV Group project </h2>
+      <div class="media">
+        <video autoplay loop muted playsinline aria-label="Demo of the articulated gimbal assembly moving through its range of motion">
+          <source src="assets/gimbal-demo.mp4" type="video/mp4">
+          Your browser does not support embedded video.
+        </video>
+        <span class="caption">FIG. 1 — Articulated gimbal demo</span>
+      </div>
+      <div class="media">
+        <img src="assets/gimbal_manufacture.jpg" alt="Gimbal assembly in manufacturing process">
+        <span class="caption">FIG. 2 — Gimbal assembly</span>
+      </div>
+      <div class="media">
+        <img src="assets/FW21-IPS.png" alt="Scoring plots from gimbal testing">
+        <span class="caption">FIG. 2 — Gimbal test results</span>
+      </div>
+      <p class="desc">
+        Replace this paragraph with a short write-up: the mechanism,
+        actuation and control approach, IMU stabilisation, and what
+        changed across design iterations.
+      </p>
+    </section>
+
+    <section class="sheet" id="sheet-02">
+      <div class="sheet-head">
+        <span class="sheet-no">SHEET 02 / 07</span>
+        <span class="sheet-tag">UAV&#8212;FXW</span>
+      </div>
+      <h2>Year 1 Fixed Wing UAV design project</h2>
+      <div class="media">
+        <img src="assets/Crazy8s.png" alt="8 (Crazy 8s) Ideation sketches for overall UAV design">
+        <span class="caption">FIG. 3 — UAV initial design sketches</span>
+      </div>
+      <p class="desc">
+        Replace this paragraph with a short write-up: airframe layout,
+        aerodynamic sizing and stability, and results from any flight
+        testing.
+      </p>
+      <div class="media">
+        <img src="assets/wings_and_data.png" alt="4 Wing designs in XFLR5 and corresponding lift/drag ratio polar plots">
+        <span class="caption">FIG. 4 — XFLR5 wing design iterations with corresponding lift/drag ratios</span>
+      </div>
+    </section>
+
+    <section class="sheet" id="sheet-03">
+      <div class="sheet-head">
+        <span class="sheet-no">SHEET 03 / 07</span>
+        <span class="sheet-tag">GLD&#8212;WD</span>
+      </div>
+      <h2>Balsa Wood Glider Competition</h2>
+      <p class="desc">
+        Replace this paragraph with a short write-up: build
+        constraints, trimming and balance, and the competition
+        result.
+      </p>
+    </section>
+
+    <section class="sheet" id="sheet-04">
+      <div class="sheet-head">
+        <span class="sheet-no">SHEET 04 / 07</span>
+        <span class="sheet-tag">FEA&#8212;WD</span>
+      </div>
+      <h2>ANSYS Finite Element Analysis</h2>
+      <p class="desc">
+        Replace this paragraph with a short write-up: build
+        constraints, trimming and balance, and the competition
+        result.
+      </p>
+    </section>
+
+    <section class="sheet" id="sheet-05">
+      <div class="sheet-head">
+        <span class="sheet-no">SHEET 05 / 07</span>
+        <span class="sheet-tag">CFD&#8212;WD</span>
+      </div>
+      <h2>ANSYS Computational Fluid Dynamics</h2>
+      <p class="desc">
+        Replace this paragraph with a short write-up: build
+        constraints, trimming and balance, and the competition
+        result.
+      </p>
+    </section>
+
+    <section class="sheet" id="sheet-06">
+      <div class="sheet-head">
+        <span class="sheet-no">SHEET 06 / 07</span>
+        <span class="sheet-tag">FLD&#8212;WD</span>
+      </div>
+      <h2>Wind Tunnel Testing</h2>
+      <p class="desc">
+        Replace this paragraph with a short write-up: build
+        constraints, trimming and balance, and the competition
+        result.
+      </p>
+    </section>
+
+    <section class="sheet" id="sheet-07">
+      <div class="sheet-head">
+        <span class="sheet-no">SHEET 07 / 07</span>
+        <span class="sheet-tag">MRC&#8212;WD</span>
+      </div>
+      <h2>Mercedes-AMG Petronas Formula One Team work experience week</h2>
+      <p class="desc">
+        Replace this paragraph with a short write-up: build
+        constraints, trimming and balance, and the competition
+        result.
+      </p>
+    </section>
+
+  </main>
+
+  <footer class="title-block" id="contact">
+    <div class="tb-row">
+      <div class="tb-cell">
+        <span class="tb-label">Drawn by</span>
+        <span class="tb-value">Barnaby Crossman</span>
+      </div>
+      <div class="tb-cell">
+        <span class="tb-label">Scale</span>
+        <span class="tb-value">N/A</span>
+      </div>
+      <div class="tb-cell">
+        <span class="tb-label">Sheet</span>
+        <span class="tb-value">1 of 1</span>
+      </div>
+    </div>
+    <div class="tb-links">
+      <a href="mailto:barney.crossman@gmail.com">Email</a>
+      <a href="https://github.com/barney-git" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/barney-crossman-993111366" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
