@@ -54,16 +54,17 @@
       <p class="desc">
         Working within a 6 person team to design a
         wing and camera gimbal for a fixed wing UAV
-        , I was responsible for the design and 
-        manufacture of the articulated gimbal assembly,
-        including the actuation and control systems.
+        , I was individually responsible for the design and 
+        manufacture of the articulated gimbal assembly.
         The dual axis gimbal was to be powered by an
         Arduino microcontroller,
-        IMU and two servo motors.
+        IMU and two servo motors and served
+        to counteract pitch and roll
+        disturbances and maintain a level camera orientation.
       </p>
       <h3>Design and SOLIDWORKS modelling</h3>
       <p class="desc">
-        I modelled a fully <strong>paramaterised, equation-driven</strong>
+        I modelled a fully <strong>parameterised, equation-driven</strong>
         assembly allowing for rapid iteration and
         testing of design configurations and
         tolerances without the need to remodel the assembly
@@ -78,15 +79,34 @@
       </p>
       <h3>Arduino programming</h3>
       <p class="desc">
-        I developed an Arduino program to decode incoming
-        IMU data.
+        I developed an Arduino program to stabilise the
+        gimballed camera
+        by decoding incoming IMU data using the I2C protocol and actuating the
+        dual servo motors. 
       </p>
-      <h3>Control systems</h3>
+      <h3>The IMU</h3>
       <p class="desc">
-        I initially developed a PID control system and 
-        complimentary filter to stabilise the gimbal in response to IMU data.
-        The PID proved unreliable however, and I later
-        developed a distinct control system.
+        Our IMU was a 6 DOF sensor, providing accelerometer
+        and gyroscope data.
+        I developed a complementary filter to combine the
+        sensor data into a single orientation estimate.
+      </p>
+      <h3>PID Control systems</h3>
+      <p class="desc">
+        Live telemetry testing revealed that the initial PID was
+        unreliable:
+        The servos used absolute position commands
+        rather than velocity inputs, so that a
+        proportional gain less than 1 would result in
+        persistent steady-state error.
+        I replaced this with an integral-only
+        controller. A tuned coefficient for 
+        each axis (pitch and roll) controlled what
+        percentage of calculated error to be
+        applied to the servo position each iteration.
+        This approach converged quickly,
+        eliminating error and
+        stabilising the gimbal.
       </p>
       <div class="media">
         <img src="assets/gimbal_manufacture.jpg" alt="Gimbal assembly in manufacturing process">
