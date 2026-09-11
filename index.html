@@ -50,11 +50,11 @@
         </video>
         <span class="caption">FIG. 1 — Articulated gimbal demo</span>
       </div>
-      <h3>Brief</h3>
+      <h3>Project overview</h3>
       <p class="desc">
         Working within a 6 person team to design a
-        wing and camera gimbal for a fixed wing UAV
-        , I was individually responsible for the design and 
+        wing and camera gimbal for a fixed wing UAV,
+        I was individually responsible for the design and 
         manufacture of the articulated gimbal assembly.
         The dual axis gimbal was to be powered by an
         Arduino microcontroller,
@@ -62,6 +62,31 @@
         to counteract pitch and roll
         disturbances and maintain a level camera orientation.
       </p>
+      <h3>Satisfying design requirements</h3>
+      <p class="desc">
+        I developed the gimbal against a formal system specification
+        published by the university. These requirements included:
+      </p>
+      <ul class="desc-list">
+        <li>The gimbal system should be actively stabilised</li>
+        <li>The gimbal system must stabilise the camera to 0°
+          pitch and 0° roll relative to the horizon
+        </li>
+        <li>The gimbal system must be capable of cancelling pitch and roll
+          angles +/- 30°
+        </li>
+        <li>The gimbal system must be capable of cancelling pitch and roll
+          rates of 90° per second and roll rates of 90° per second
+        </li>
+        <li>The system must begin stabilising within 5 seconds of
+          power being applied and does not
+          require any interaction (i.e. pressing a button)
+        </li>
+        <li>The gimbal system must be powered by the provided
+          5V 2A DC power supply only (the
+          FPV camera system is powered separately)
+        </li>
+      </ul>
       <div class="media">
         <img src="assets/gimbalAssemblyDrw.jpg" alt="SOLIDWORKS drawing of the gimbal assembly">
         <span class="caption">FIG. 1 — SOLIDWORKS drawing of the gimbal assembly</span>
@@ -89,12 +114,17 @@
       <p class="desc">
         I developed an Arduino program to stabilise the
         gimballed camera
-        by decoding incoming IMU data using the I2C protocol and actuating the
-        dual servo motors. 
+        by decoding incoming IMU data (using the I2C protocol), resolving the
+        appropriate control output and actuating the
+        dual servo motors.
+        <a href="https://github.com/barney-git/uav-gimbal-code" target="_blank"
+          rel="noopener" class="code-link">
+          View full code on GitHub
+        </a>
       </p>
       <h3>The IMU</h3>
       <p class="desc">
-        Our IMU was a 6 DOF sensor, providing accelerometer
+        The IMU was a 6 DOF sensor, providing accelerometer
         and gyroscope data.
         I developed a complementary filter to combine the
         sensor data into a single orientation estimate.
@@ -120,7 +150,6 @@
         <img src="assets/gimbal_manufacture.jpg" alt="Gimbal assembly in manufacturing process">
         <span class="caption">FIG. 2 — Gimbal assembly</span>
       </div>
-      <h3>Manufacture and rapid prototyping</h3>
       <h3>3D printing</h3>
       <p class="desc">
         From the SOLIDWORKS parts,
@@ -128,7 +157,7 @@
         to test the tolerances I had designed.
         The first iterations revealed fitment issues
         with the servo motors, which I resolved by adjusting
-        the tolerance parameters in the SOLIDWORKS.
+        the tolerance parameters in SOLIDWORKS.
         My final design was also printed with reduced
         infill to reduce weight and material usage.
         I also used variable layer heights to
@@ -147,16 +176,78 @@
         tighter fit on the box joints, and Plywood
         would save considerable weight over a 3D printed base.
       </p>
-      <h3>Iteration and testing</h3>
-      <h3>Results</h3>
+      <h3>Arduino circuitry</h3>
+      <p class="desc">
+        I designed a circuit to allow the Arduino to be easily removed
+        and reused in future projects, control the dual servo motors, and
+        be powered by a 5V power supply from the UAV.
+      </p>
+      <h3>Testing and iteration</h3>
+      <p class="desc">
+        Testing exposed three significant issues with the gimbal:
+      </p>
+      <div class="code-block">
+        <pre><code>
+float a_pitch_wrapped = fmod((a_pitch - pitch) + PI, 2*PI) - PI + pitch;
+float a_roll_wrapped  = fmod((a_roll  - roll)  + PI, 2*PI) - PI + roll;
+
+pitch = alpha * (pitch + g_pitch) + (1 - alpha) * a_pitch_wrapped;
+roll  = alpha * (roll  + g_roll)  + (1 - alpha) * a_roll_wrapped;
+
+float pitch_deg = (pitch * 180 / PI);
+float roll_deg = (roll * 180 / PI) + 180;
+
+pitch_deg = constrain(pitch_deg, -90, 90);
+roll_deg = constrain(roll_deg, -90, 90);
+        </code></pre>
+        <span class="caption">FIG. 3 — IMU data wrapping code</span>
+      </div>
+      <h4>Discontinuity error</h4>
+      <p class="desc">
+        The inverted IMU orientation caused the
+        IMU readings 
+        to jump between +/- 179° when the camera oscillated around level.
+        This caused massive, erroneous spikes in the control response.
+        I resolved this by unwrapping the IMU output to a continuous range
+        before calculating the control output.
+      </p>        
+      <h4>Startup transient error</h4>
+      <p class="desc">
+        Delay in the startup of the IMU would supply
+        false zero values to the control system. The unwrapping logic
+        turned these values into +/- 179°, causing the control system to
+        incorrectly react to a huge disturbance. This was resolved by delaying
+        the initiation of the control loop until the IMU was functional,
+        while ensuring the system remained within the specification
+        startup time.
+      </p>
+      <h4>Strain or chafing of the power cable</h4>
+      <p class="desc">
+        The camera was mounted
+        too far from the UAV power lead. This was fixed simply by reducing
+        the size of the plywood frame.   
+      </p>
+      <h3>Final design</h3>
+      <p class="desc">
+        I tested and adjusted the control system coefficients to
+        optimise settling time and smooth out jerky initial responses.
+      </p>
       <div class="media">
         <img src="assets/gimbalResults.jpg" alt="Scoring plots from gimbal testing">
         <span class="caption">FIG. 2 — Gimbal test results</span>
       </div>
+      <h3>Results</h3>
       <p class="desc">
-        Replace this paragraph with a short write-up: the mechanism,
-        actuation and control approach, IMU stabilisation, and what
-        changed across design iterations.
+        The final gimbal was tested by University of Southampton demonstrators
+        and performed excellently. As shown on the plots above, the gimbal
+        was able to remain within the innermost scoring area
+        consistently, barely entering the middle scoring area.
+        Points were awarded for deviating from the innermost square,
+        with higher penalties for larger boxes, therefore lower is better.
+        My final score
+        of 14.2 was incredible and 2nd best* amongst the cohort.
+
+        *to my knowledge
       </p>
     </section>
 
@@ -290,10 +381,10 @@
         <span class="sheet-no">SHEET 07 / 07</span>
         <span class="sheet-tag">MRC&#8212;WD</span>
       </div>
-      <h2>Mercedes-AMG Petronas Formula One Team work experience week</h2>
+      <h2>Mercedes-AMG Petronas Formula One Team work experience</h2>
       <div class="media">
         <img src="assets/steeringWheel.jpg" alt="Mock F1 steering wheel">
-        <span class="caption">FIG. 10 — Mock F1 steering wheel I produced during my work experience week</span>
+        <span class="caption">FIG. 10 — Mock F1 steering wheel I produced during my work experience</span>
       </div>
       <p class="desc">
         Replace this paragraph with a short write-up: build

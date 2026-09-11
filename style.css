@@ -242,6 +242,26 @@ main,
   border-top: 1px solid var(--line);
 }
 
+.code-block {
+  margin: 24px 0;
+  border: 1px solid var(--line);
+  background: var(--bg-panel);
+}
+
+.code-block pre {
+  margin: 0;
+  padding: 16px 18px;
+  overflow-x: auto;
+  font-family: var(--font-data);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--line-bright);
+}
+
+.code-block code {
+  font-family: inherit;
+}
+
 /* Optional: a row of smaller supporting images (CAD views, sketches) */
 .gallery {
   display: grid;
@@ -264,6 +284,30 @@ main,
   max-width: 62ch;
   color: var(--paper-dim);
   font-size: 1rem;
+}
+
+.desc-list {
+  list-style: none;
+  max-width: 62ch;
+  margin: 12px 0;
+  padding: 0;
+  color: var(--paper-dim);
+  font-size: 1rem;
+}
+
+.desc-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  margin-bottom: 6px;
+  padding-left: 0; /* remove, gap now handles spacing */
+}
+
+.desc-list li::before {
+  content: "▸";
+  font-size: 1.2em;
+  color: var(--paper-dim);
+  flex-shrink: 0; /* stops the marker being squashed by long text */
 }
 
 /* ---------- Title block / footer ---------- */
@@ -316,6 +360,24 @@ main,
 
 .tb-links a:hover,
 .tb-links a:focus-visible {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.code-link {
+  display: inline-block;
+  margin-top: 10px;
+  color: var(--line-bright);
+  text-decoration: none;
+  font-family: var(--font-data);
+  font-size: 0.85rem;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 1px;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.code-link:hover,
+.code-link:focus-visible {
   color: var(--accent);
   border-color: var(--accent);
 }
