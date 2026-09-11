@@ -280,10 +280,37 @@ main,
   background: var(--bg-panel);
 }
 
+.highlight-box {
+  border: 1px solid var(--accent);
+  background: var(--bg-panel);
+  padding: 16px 20px;
+  margin: 24px 0 36px;
+}
+
+.hb-label {
+  display: block;
+  font-family: var(--font-data);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+
+.hb-text {
+  color: var(--paper);
+  font-size: 1rem;
+  max-width: 62ch;
+}
+
 .desc {
   max-width: 62ch;
   color: var(--paper-dim);
   font-size: 1rem;
+}
+
+.desc strong {
+  color: var(--paper);
+  font-weight: 600;
 }
 
 .desc-list {

@@ -50,6 +50,21 @@
         </video>
         <span class="caption">FIG. 1 — Articulated gimbal demo</span>
       </div>
+      <div class="highlight-box">
+        <span class="hb-label">At a glance</span>
+        <p class="hb-text">
+          In this project, I independently designed, built and programmed
+          a dual-axis stabilised
+          camera gimbal against a formal engineering spec. I used SOLIDWORKS
+          for design, modelling and technical drawings.
+          I programmed an Arduino microcontroller handling I2C, complementary
+          filtering, and a
+          custom control system. I used 3D printing
+          and laser cutting to manufacture and iterate physical prototypes.
+          My gimbal's final score of 14.2
+          was the second best that I am aware of across the course.
+        </p>
+      </div>
       <h3>Project overview</h3>
       <p class="desc">
         Working within a 6 person team to design a
@@ -182,10 +197,6 @@
         and reused in future projects, control the dual servo motors, and
         be powered by a 5V power supply from the UAV.
       </p>
-      <h3>Testing and iteration</h3>
-      <p class="desc">
-        Testing exposed three significant issues with the gimbal:
-      </p>
       <div class="code-block">
         <pre><code>
 float a_pitch_wrapped = fmod((a_pitch - pitch) + PI, 2*PI) - PI + pitch;
@@ -202,6 +213,10 @@ roll_deg = constrain(roll_deg, -90, 90);
         </code></pre>
         <span class="caption">FIG. 3 — IMU data wrapping code</span>
       </div>
+      <h3>Testing and iteration</h3>
+      <p class="desc">
+        Testing exposed three significant issues with the gimbal:
+      </p>
       <h4>Discontinuity error</h4>
       <p class="desc">
         The inverted IMU orientation caused the
@@ -227,27 +242,32 @@ roll_deg = constrain(roll_deg, -90, 90);
         too far from the UAV power lead. This was fixed simply by reducing
         the size of the plywood frame.   
       </p>
-      <h3>Final design</h3>
+      <br>
       <p class="desc">
-        I tested and adjusted the control system coefficients to
+        Finally I tested and adjusted the control system coefficients to
         optimise settling time and smooth out jerky initial responses.
       </p>
       <div class="media">
         <img src="assets/gimbalResults.jpg" alt="Scoring plots from gimbal testing">
         <span class="caption">FIG. 2 — Gimbal test results</span>
       </div>
+      <h3>Evaluation</h3>
+      <p class="desc">
+        The completed gimbal was evaluated by University of Southampton demonstrators
+        by mounting a laser pointer in place of the camera, and tracking the
+        path traced by the laser within a series of boxes shown above.
+        Penalties were applied for exceeding the central box, scaled by
+        distance from the centre, thus a lower
+        score is better.
+      </p>
       <h3>Results</h3>
       <p class="desc">
-        The final gimbal was tested by University of Southampton demonstrators
-        and performed excellently. As shown on the plots above, the gimbal
-        was able to remain within the innermost scoring area
-        consistently, barely entering the middle scoring area.
-        Points were awarded for deviating from the innermost square,
-        with higher penalties for larger boxes, therefore lower is better.
-        My final score
-        of 14.2 was incredible and 2nd best* amongst the cohort.
-
-        *to my knowledge
+        As seen above, the gimbal performed well and remained primarily within
+        the central area, earning minimal penalties for overshooting.
+        My low score of 14.2 demonstrates the effectiveness of my mechanical design
+        and control system. Full results were not published, but
+        this is the second-best result I am aware of, with several groups' scores
+        running into the hundreds.
       </p>
     </section>
 
