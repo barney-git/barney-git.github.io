@@ -277,19 +277,88 @@ roll_deg = constrain(roll_deg, -90, 90);
         <span class="sheet-tag">UAV&#8212;FXW</span>
       </div>
       <h2>Year 1 Fixed Wing UAV design project</h2>
+      <div class="highlight-box">
+        <span class="hb-label">At a glance</span>
+        <p class="hb-text">
+          Concepted, researched and designed a fixed wing UAV with a
+          suitable payload as part of a group. I Then individually designed and
+          produced a representative wing structure using XFLR5,
+          SOLIDWORKS, and laser cutting.
+        </p>
+      </div>
+      <h3>Project overview</h3>
+      <p class="desc">
+        Working as a group, we were tasked with defining a UAV concept,
+        function appropriate payload. We then individualy designed and
+        produced a representative wing structure.
+      </p>
+      <h3>Secondary research</h3>
+      <p class="desc">
+        We chose to design an emergency broadcast UAV, to provide early
+        warnings to people in remote and/or unconnected areas.
+        We then researched natural disasters, and decided to specialise in
+        floods. This decision was made due to suitable warning times,
+        allowing a UAV to be deployed in time,
+        and relatively managable air conditions for UAV flight.
+        I then researched suitable spar materials for the wing.
+      </p>
+      <h3>Generating a design specification</h3>
+      <p class="desc">
+        As a team we developed a design specification governing performance,
+        safety, cost, environmental impact and form.
+      </p>
       <div class="media">
         <img src="assets/Crazy8s.png" alt="8 (Crazy 8s) Ideation sketches for overall UAV design">
         <span class="caption">FIG. 3 — UAV initial design sketches</span>
       </div>
+      <h3>Ideation and concept selection</h3>
       <p class="desc">
-        Replace this paragraph with a short write-up: airframe layout,
-        aerodynamic sizing and stability, and results from any flight
-        testing.
+        Each member of the team generated a number of design sketches,
+        before choosing one to take forward to the team.
+        The team then evaluated each design using a series of go/no-go 
+        questions, and a weighted ranking matrix based 
+        on the design specification subheadings to
+        score each concept and numerically determine the best design.
       </p>
       <div class="media">
         <img src="assets/wings_and_data.png" alt="4 Wing designs in XFLR5 and corresponding lift/drag ratio polar plots">
         <span class="caption">FIG. 4 — XFLR5 wing design iterations with corresponding lift/drag ratios</span>
       </div>
+      <h3>Aerodynamic design in XFLR5</h3>
+      <p class="desc">
+        Using XFLR5,
+        I iterated through a series of NACA 4 digit airfoils, and
+        refined the wing geometry in order to maximising aerodynamic
+        efficiency (lift to drag ratio). The primary constraints I had
+        to consider were wing length and aspect ratio, to ensure
+        there was enough internal space to accomodate my spar design.
+      </p>
+      <h3>Python structural analysis</h3>
+      <p class="desc">
+        I calculated the maximum tip deflection of the my wing half span
+        using a python script. The script used numerical integration to
+        resolve the the deflection across the wing from 
+        simulated XFLR5 bending moment data,
+        moment of inertia of my chosen spar geometry
+        and Young's modulus of my chosen spar material.
+        I chose medium modulus carbon fibre as my spar
+        material in order to keep tip deflection below
+        10% of wing span, as per the design specification.
+      </p>
+      <h3>SOLIDWORKS model</h3>
+      <p class="desc">
+        I painstakingly reconstructed the wing geometry in SOLIDWORKS,
+        by lofting between the airfoil profiles, oriented carefully
+        to preserve the wing shape, including twist and sweep.
+        The model was fully parameterised - allowing me to adjust the
+        model if nescessary.
+      </p>
+      <h3>Laser cutting and assembly</h3>
+      <p class="desc">
+        From the SOLIDWORKS model, I generated drawings for each unique rib
+        section, which I then laser cut from 3mm plywood. I then threaded
+        the ribs onto the dual spar structure and glued them in place.
+      </p>
     </section>
 
     <section class="sheet" id="sheet-03">
