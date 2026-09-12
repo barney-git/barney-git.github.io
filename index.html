@@ -426,14 +426,6 @@ roll_deg = constrain(roll_deg, -90, 90);
           processed and plotted results.
         </p>
       </div>
-      <h3>Project overview</h3>
-      <p class="desc">
-        I used ANSYS Mechanical across three studies:
-        A 1D cantilever beam, a 2D plate with a hole, and a 3D wing section.
-        I generated and refined meshes, applied boundary conditions
-        and loads, ran simulations, performed convergence studies,
-        processed and plotted results.
-      </p>
       <h3>1D spring system</h3>
       <p class="desc">
         Modelled a spring system of three springs and four nodes
@@ -491,13 +483,14 @@ roll_deg = constrain(roll_deg, -90, 90);
       </div>
       <h3>2D plate with a hole</h3>
       <p class="desc">
-        I defined a 2D plate with an off-centre circular hole cut out, fixed along
+        I defined a 2D (1468 x 400mm)plate with an off-centre circular
+        hole cut out, fixed along
         one edge, with a negative pressure applied along the opposite
         edge - pulling the plate apart.
       </p>
       <h3>Mesh sensitivity study</h3>
       <p class="desc">
-        For a set of three different hole radii, I ran a mesh-converged
+        For a set of three different hole radii  (60mm, 80mm and 100mm), I ran a mesh-converged
         study using three mesh sizes. I plotted mesh size against maximum
         stress, hole radius against maximum stress, and hole radius against
         safety factor. I found that the maximum stress and 
@@ -566,33 +559,96 @@ roll_deg = constrain(roll_deg, -90, 90);
         <span class="sheet-tag">CFD&#8212;WD</span>
       </div>
       <h2>ANSYS Computational Fluid Dynamics</h2>
+      <div class="highlight-box">
+        <span class="hb-label">At a glance</span>
+        <p class="hb-text">
+          I used ANSYS Fluent inside of ANSYS-Workbench to run
+          Euler CFD calculations for a 3D wing, and to
+          resolve viscous CFD for laminar and turbulent boundary layers
+          along a plate. I generated and imported CAD geometry,
+          meshed the flow domain around the wing, applied boundary conditions,
+          applied flow conditions, solved simulations using various methods,
+          and processed, plotted and compared results to theory.
+        </p>
+      </div>
+      <h3>CAD model generation in OpenVSP</h3>
+      <p class="desc">
+        In OpenVSP, I created a half-span wing model using a
+        NACA 1614 airfoil, and exported the model.
+      </p>
+      <h3>ANSYS-Workbench setup</h3>
+      <p class="desc">
+        Using the "3D" analysis type, I created a new design modeller
+        geometry and imported the half-span wing model from OpenVSP.
+        I then created a cuboid bounding box, starting from the
+        wing root, which
+        extended outwards past the wing tip, and either side of the
+        leading and trailing edges. The wing form was then subtracted
+        from this bounding box to create the flow volume.
+      </p>
       <div class="media">
         <img src="assets/mesh.png" alt="ANSYS CFD showing a coarse wing mesh">
         <span class="caption">FIG. 7 — Coarse wing mesh</span>
       </div>
-            <div class="highlight-box">
-        <span class="hb-label">At a glance</span>
-        <p class="hb-text">
-          
-        </p>
-      </div>
-      <h3>Project overview</h3>
+      <h3>Meshing</h3>
       <p class="desc">
-        
+        I generated initial unstructured meshes
+        with element sizes of 0.2m (coarse), 0.05m (medium) and 0.01m (fine).
+        Separately, I used curvature capture, and ran combined Hessian
+        grid adaptation
+        until convergence to refine the mesh in areas with complicated flows.
+      </p>
+      <h3>ANSYS Fluent</h3>
+      <p class="desc">
+        I used the "pressure-based, steady" solver, with air
+        as the working fluid and simulation set to inviscid.
+        I established the flow speed and angle of incidence
+        (effectively the angle of attack) at the inlet and outlet.
+        I established the wall boundary conditions,
+        initialised tracked variables and initialised the simulation.
+        I ran each case until residuals converged, and repeated
+        for coarse, medium and fine meshes, and then three angles of attack
+        (0°, 4° and 8°) using the medium mesh.
       </p>
       <div class="media">
         <img src="assets/airPressure.png" alt="ANSYS CFD showing the air pressure around the airfoil">
         <span class="caption">FIG. 8 — ANSYS CFD showing the air pressure around the airfoil</span>
       </div>
-      <p class="desc">
-        Replace this paragraph with a short write-up: build
-        constraints, trimming and balance, and the competition
-        result.
-      </p>
       <div class="media">
         <img src="assets/surfacePressure.png" alt="ANSYS CFD showing surface pressure distribution on the wing">
         <span class="caption">FIG. 9 — ANSYS CFD showing the surface pressure distribution on the wing</span>
       </div>
+      <h3>Post-processing</h3>
+      <p class="desc">
+        I extracted pressure contour plots for the wing root wall surface,
+        and the wing surface itself. I also plotted pressure coefficient
+        against x position along airfoil surface.
+        I then recorded lift, drag and moment coefficients and
+        compared these results to lifting line theory.
+        The drag coefficient converged towards zero as mesh
+        resolution increased - as expected for an inviscid flow.
+        Lift coefficient however, increased with mesh resolution,
+        likely due to the fact that Fluent resolves vortices in
+        all directions - whereas lifting-line theory is limited
+        to only spanwise vortices.
+      </p>
+      <h3>Flat plate boundary layers</h3>
+      <p class="desc">
+        I ran viscous CFD calculations for a laminar and turbulent boundary
+        layer along the same no-slip flat plate. I extracted 
+        velocity profiles and computed displacement and momentum thickness,
+        and shape factor for each regime. The
+        laminar shape factor (<strong>2.43</strong>) closely matched the
+        theoretical Blasius value (<strong>2.59</strong>), and the turbulent
+        shape factor (<strong>1.33</strong>) fell within the expected
+        1.3-1.4 range. The turbulent velocity profile closely followed the
+        logarithmic
+        law of the wall between <strong>y+ ≈ 40-120</strong>, against
+        a theoretical applicable range of 30-100.
+        Finally I ran the SST transition model to capture the
+        laminar-turbulent transition, which occurred at
+        approximately 70% of the plate's length.
+      </p>
     </section>
 
     <section class="sheet" id="sheet-06">
@@ -608,12 +664,99 @@ roll_deg = constrain(roll_deg, -90, 90);
             <div class="highlight-box">
         <span class="hb-label">At a glance</span>
         <p class="hb-text">
-          
+          I investigated the aerodynamic performance of a NACA 0020
+          based wing section across three wind tunnel experiments:
+          A 2D airfoil lift experiment, flat plate boundary layer
+          analysis, and a full scale wind tunnel test. I compared
+          results across the three experiments and validated them
+          against XFLR5 and accepted theory.
         </p>
       </div>
-      <h3>Project overview</h3>
+      <h3>Airfoil lift</h3>
       <p class="desc">
-        
+        I mounted a NACA 0020 airfoil section in a small, low-speed wind
+        tunnel. Boundary walls at each end of the span ensured
+        it behaved as an effectively infinite 2D span,
+        eliminating 3D effects such as wingtip vortices.
+        I measured surface pressure displayed on an inclined manometer
+        via pressure tappings along
+        the airfoil's upper and lower surface across a range of
+        angles of attack, and numerically integrated this data to
+        obtain lift coefficient.
+      </p>
+      <div class="media">
+        <img src="assets/lift-curve-slope-and-boundary-layers.png" alt="Lift curve slope and boundary layer plots">
+        <span class="caption">FIG. 9 — Lift curve slope and boundary layer plots</span>        
+      </div>
+      <h3>XFoil comparison</h3>
+      <p class="desc">
+        I ran an XFoil analysis of the same airfoil section,
+        and compared the data between my experimental results,
+        XFoil and thin-airfoil theory. All three methods passed
+        through the origin as expected, and shared very similar
+        gradients.
+      </p>
+      <h3>Smooth flat plate boundary layer profile</h3>
+      <p class="desc">
+        I measured the velocity profile of a smooth flat plate
+        at a range of Reynolds numbers
+        by moving a pitot probe positioned at the trailing edge
+        upwards from the plate surface, capturing velocity
+        within and outside the boundary layer. From this data I calculated
+        momentum thickness, and used numerical integration to determine
+        the skin-friction drag coefficient.
+      </p>
+      <h3>Theory comparison</h3>
+      <p class="desc">
+        I graphed the velocity profiles for each Reynolds number,
+        and found that all of the profiles resembled laminar
+        boundary layers, however I compared my skin-friction drag
+        coefficients against laminar and turbulent theory and found
+        that they fit neither. Examining my Reynolds number revealed
+        that my results were close to transition Reynolds numbers,
+        likely explaining the discrepancy.
+      </p>
+      <h3>RJ Mitchell full-scale wind tunnel</h3>
+      <p class="desc">
+        A half-span wing model with the same NACA 0020 airfoil was
+        installed in the university's full-scale wind tunnel.
+        The wing is attached to a force balance which measures
+        the forces on the wing, which I resolved into lift and drag
+        components. The wing is tested through a range of angles of attack,
+        -4° to 20°.
+      </p>
+      <h3>Python data analysis</h3>
+      <p class="desc">
+        By fitting a curve to the wind tunnel data in python,
+        I calculated the lift and drag coefficients for the
+        full-span wing, used to evaluate maximum lift-drag ratio
+        (aerodynamic efficiency); 12.76 - consistent with
+        published literature for similar wings -
+        and corresponding optimal angle of attack of 6.15°.
+        I calculated the Oswald efficiency of the wing; 0.956, and
+        found it lay within the expected range of 0.700-1.000.
+      </p>
+      <h3>XFLR5 comparison</h3>
+      <p class="desc">
+        This experimental data is compared to XFLR5 results for the
+        full wing in the same flight conditions. Plotting
+        aerodynamic efficiency against angle of attack, my experimental
+        data traced a very similar curve to the XFLR5 results, although
+        shifted by around 2° towards higher angles of attack, but
+        correctly passing through the origin.
+      </p>
+      <h3>Drag approximation as a flat plate</h3>
+      <p class="desc">
+        To estimate the viscous drag coefficient,
+        I doubled the flate plate drag coefficient from the previous
+        experiment to account for the upper and lower wing surfaces.
+        Using this value; 0.0076,
+        I determined that viscous drag was not
+        the dominant drag component of the drag coefficient
+        for the full wing and only made up roughly 30% of the total;
+        0.0256. Instead, the drag coefficient
+        is dominated by form and interference drag at zero lift, making up
+        the remaining 0.0180.
       </p>
     </section>
 
