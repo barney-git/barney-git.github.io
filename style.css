@@ -359,6 +359,26 @@ main,
   max-width: 62ch;
 }
 
+.hb-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  margin: 14px 0 0;
+  padding: 0;
+}
+
+.hb-tags li {
+  font-family: var(--font-data);
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+  color: var(--line-bright);
+  border: 1px solid var(--line);
+  background: var(--bg);
+  padding: 4px 10px;
+  border-radius: 2px; /* small, sharp corners fit the technical-drawing aesthetic — set to 999px if you want fully rounded pills instead */
+}
+
 .desc {
   max-width: 62ch;
   color: var(--paper-dim);
@@ -440,7 +460,7 @@ main,
 .tb-links a {
   color: var(--line-bright);
   text-decoration: none;
-  font-size: 1.4rem;
+  font-size: clamp(0.95rem, 2.5vw, 1.4rem);
   border-bottom: 1px solid var(--line);
   padding-bottom: 1px;
   transition: color 0.15s ease, border-color 0.15s ease;

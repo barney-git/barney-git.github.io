@@ -53,7 +53,7 @@
 
       <div class="sheet-body">
         <div class="media">
-          <video autoplay loop muted playsinline aria-label="Demo of the articulated gimbal assembly moving through its range of motion">
+          <video autoplay loop muted playsinline aria-label="Animated demo of the articulated gimbal assembly moving through its required range of motion">
             <source src="assets/gimbal-demo.mp4" type="video/mp4">
             Your browser does not support embedded video.
           </video>
@@ -73,6 +73,16 @@
             My gimbal's final score of 14.2
             was the second best that I am aware of across the course.
           </p>
+          <ul class="hb-tags">
+            <li>SOLIDWORKS</li>
+            <li>Arduino / C++</li>
+            <li>I2C</li>
+            <li>Circuit design</li>
+            <li>Soldering</li>
+            <li>Control systems</li>
+            <li>3D printing</li>
+            <li>Laser cutting</li>
+          </ul>
         </div>
         <h3>Project overview</h3>
         <p class="desc">
@@ -112,12 +122,12 @@
           </li>
         </ul>
         <div class="media">
-          <img src="assets/gimbalAssemblyDrw.jpg" alt="SOLIDWORKS drawing of the gimbal assembly">
-          <span class="caption">FIG. 2 — SOLIDWORKS drawing of the gimbal assembly</span>
+          <img src="assets/gimbalAssemblyDrw.jpg" alt="SOLIDWORKS technical drawing of the gimbal assembly">
+          <span class="caption">FIG. 2 — SOLIDWORKS technical drawing of the gimbal assembly</span>
         </div>
         <div class="media">
           <img src="assets/cameraSlotDrw.jpg" alt="SOLIDWORKS drawing of the camera mounting slot">
-          <span class="caption">FIG. 3 — SOLIDWORKS drawing of the camera mounting slot</span>
+          <span class="caption">FIG. 3 — SOLIDWORKS technical drawing of the camera mounting slot</span>
         </div>
         <h3>Design and SOLIDWORKS modelling</h3>
         <p class="desc">
@@ -153,7 +163,7 @@
           I developed a complementary filter to combine the
           sensor data into a single orientation estimate.
         </p>
-        <h3>PID Control systems</h3>
+        <h3>PID control systems</h3>
         <p class="desc">
           Live telemetry testing revealed that the initial PID was
           unreliable:
@@ -171,8 +181,8 @@
           stabilising the gimbal.
         </p>
         <div class="media">
-          <img src="assets/gimbal_manufacture.jpg" alt="Gimbal assembly in manufacturing process">
-          <span class="caption">FIG. 4 — Gimbal assembly</span>
+          <img src="assets/gimbal_manufacture.jpg" alt="Gimbal assembly during manufacturing process">
+          <span class="caption">FIG. 4 — Gimbal during manufacturing process</span>
         </div>
         <h3>3D printing</h3>
         <p class="desc">
@@ -308,6 +318,12 @@
             a large part of my motivation to pursue Aerospace engineering
             at university.
           </p>
+          <ul class="hb-tags">
+            <li>CNC machining</li>
+            <li>CMM and metrology</li>
+            <li>Carbon fibre layup</li>
+            <li>Workshop skills</li>
+          </ul>
         </div>
         <h3>Steering wheel model</h3>
         <p class="desc">
@@ -319,9 +335,9 @@
         </p>
         <h3>Equipment demonstrations</h3>
         <p class="desc">
-          I was given an in depth tour and explanation of the full sized wind
+          I was given an in-depth tour and explanation of the full sized wind
           tunnel at the facility, and was taught the setup and calibration
-          process of the impressive five-axis CNC machines in the machine shop.
+          process of the impressive 5-axis CNC machines in the machine shop.
         </p>
         <h3>Quality control and metrology</h3>
         <p class="desc">
@@ -351,7 +367,7 @@
         <div class="highlight-box">
           <span class="hb-label">At a glance</span>
           <p class="hb-text">
-            I used ANSYS Fluent inside of ANSYS-Workbench to run
+            I used ANSYS Fluent inside of ANSYS Workbench to run
             Euler CFD calculations for a 3D wing, and to
             resolve viscous CFD for laminar and turbulent boundary layers
             along a plate. I generated and imported CAD geometry,
@@ -359,15 +375,22 @@
             applied flow conditions, solved simulations using various methods,
             and processed, plotted and compared results to theory.
           </p>
+          <ul class="hb-tags">
+            <li>ANSYS Fluent</li>
+            <li>OpenVSP</li>
+            <li>Mesh adaptation</li>
+            <li>Turbulence modelling</li>
+            <li>Data processing</li>
+          </ul>
         </div>
         <h3>CAD model generation in OpenVSP</h3>
         <p class="desc">
           In OpenVSP, I created a half-span wing model using a
           NACA 1614 airfoil, and exported the model.
         </p>
-        <h3>ANSYS-Workbench setup</h3>
+        <h3>ANSYS Workbench setup</h3>
         <p class="desc">
-          Using the "3D" analysis type, I created a new design modeller
+          Using the "3D" analysis type, I created a new DesignModeler
           geometry and imported the half-span wing model from OpenVSP.
           I then created a cuboid bounding box, starting from the
           wing root, which
@@ -376,8 +399,8 @@
           from this bounding box to create the flow volume.
         </p>
         <div class="media">
-          <img src="assets/mesh.png" alt="ANSYS CFD showing a coarse wing mesh">
-          <span class="caption">FIG. 1 — Coarse wing mesh</span>
+          <img src="assets/mesh.png" alt="Coarse wing mesh in ANSYS Fluent">
+          <span class="caption">FIG. 1 — Coarse wing mesh in ANSYS Fluent</span>
         </div>
         <h3>Meshing</h3>
         <p class="desc">
@@ -400,12 +423,12 @@
           (0°, 4° and 8°) using the medium mesh.
         </p>
         <div class="media">
-          <img src="assets/airPressure.png" alt="ANSYS CFD showing the air pressure around the airfoil">
-          <span class="caption">FIG. 2 — ANSYS CFD showing the air pressure around the airfoil</span>
+          <img src="assets/airPressure.png" alt="ANSYS Fluent showing the air pressure around the airfoil">
+          <span class="caption">FIG. 2 — ANSYS Fluent contour showing the air pressure around the airfoil</span>
         </div>
         <div class="media">
-          <img src="assets/surfacePressure.png" alt="ANSYS CFD showing surface pressure distribution on the wing">
-          <span class="caption">FIG. 3 — ANSYS CFD showing the surface pressure distribution on the wing</span>
+          <img src="assets/surfacePressure.png" alt="ANSYS Fluent contour showing surface pressure distribution on the wing">
+          <span class="caption">FIG. 3 — ANSYS Fluent contour showing the surface pressure distribution on the wing</span>
         </div>
         <h3>Post-processing</h3>
         <p class="desc">
@@ -462,6 +485,12 @@
             simulations, performed convergence studies,
             processed and plotted results.
           </p>
+          <ul class="hb-tags">
+            <li>ANSYS Mechanical</li>
+            <li>APDL</li>
+            <li>Mesh convergence</li>
+            <li>Material optimisation</li>
+          </ul>
         </div>
         <h3>1D spring system</h3>
         <p class="desc">
@@ -471,8 +500,8 @@
           the displacement of, and reaction force on each node.
         </p>
         <div class="media">
-          <img src="assets/cantilever.png" alt="ANSYS Finite Element Analysis of a cantilever beam">
-          <span class="caption">FIG. 1 — ANSYS Finite Element Analysis of a cantilever beam</span>
+          <img src="assets/cantilever.png" alt="ANSYS Mechanical displacement contour of a cantilever beam under load">
+          <span class="caption">FIG. 1 — ANSYS Mechanical displacement contour of a cantilever beam under load</span>
         </div>
         <h3>Static analysis of a 1D cantilever beam</h3>
         <p class="desc">
@@ -515,8 +544,8 @@
           and maximum stress for each iteration of a loop.
         </p>
         <div class="media">
-          <img src="assets/vonMises.png" alt="ANSYS FEA showing the Von Mises stress distribution of a plate with a hole">
-          <span class="caption">FIG. 2 — ANSYS FEA showing the Von Mises stress distribution of a plate with a hole</span>
+          <img src="assets/vonMises.png" alt="ANSYS Mechanical contour showing the Von Mises stress distribution of a plate with a hole">
+          <span class="caption">FIG. 2 — ANSYS Mechanical contour showing the Von Mises stress distribution of a plate with a hole</span>
         </div>
         <h3>2D plate with a hole</h3>
         <p class="desc">
@@ -545,6 +574,10 @@
           centre. This is because stresses near the loaded edge must
           redistribute over a shorter distance.
         </p>
+        <div class="media">
+          <img src="assets/convergenceStudy.png" alt="Python plots showing deflection and stress convergence for SHELL181 vs SHELL281 wing elements">
+          <span class="caption">FIG. 3 — Python plots showing deflection and stress convergence for SHELL181 vs SHELL281 wing elements</span>
+        </div>
         <h3>Static structural analysis of a 3D wing</h3>
         <p class="desc">
           I imported the 3D wing model into ANSYS, alternating between
@@ -560,10 +593,6 @@
           This clearly demonstrated the difference in computational cost
           between the two element types.
         </p>
-        <div class="media">
-          <img src="assets/convergenceStudy.png" alt="Deflection and stress convergence for SHELL181 vs SHELL281 wing elements">
-          <span class="caption">FIG. 3 — Deflection and stress convergence for SHELL181 vs SHELL281 wing elements</span>
-        </div>
         <h3>Minimising weight</h3>
         <p class="desc">
           For a set of materials and wing skin thicknesses, I compared
@@ -602,10 +631,10 @@
 
       <div class="sheet-body">
         <div class="media">
-          <img src="assets/windTunnel.jpg" alt="Wind tunnel testing of a wing section">
-          <span class="caption">FIG. 1 — Wind tunnel testing of a wing section</span>        
+          <img src="assets/windTunnel.jpg" alt="Wing section mounted in the RJ Mitchell wind tunnel">
+          <span class="caption">FIG. 1 — Wing section mounted in the RJ Mitchell wind tunnel</span>        
         </div>
-              <div class="highlight-box">
+        <div class="highlight-box">
           <span class="hb-label">At a glance</span>
           <p class="hb-text">
             I investigated the aerodynamic performance of a NACA 0020
@@ -615,6 +644,12 @@
             results across the three experiments and validated them
             against XFLR5 and accepted theory.
           </p>
+          <ul class="hb-tags">
+            <li>Wind tunnel testing</li>
+            <li>XFoil</li>
+            <li>XFLR5</li>
+            <li>Python</li>
+          </ul>
         </div>
         <h3>Airfoil lift</h3>
         <p class="desc">
@@ -629,8 +664,8 @@
           obtain lift coefficient.
         </p>
         <div class="media">
-          <img src="assets/lift-curve-slope-and-boundary-layers.png" alt="Lift curve slope and boundary layer plots">
-          <span class="caption">FIG. 2 — Lift curve slope and boundary layer plots</span>        
+          <img src="assets/lift-curve-slope-and-boundary-layers.png" alt="Python plots showing lift curve slope and boundary layer plots">
+          <span class="caption">FIG. 2 — Python plots showing lift curve slope and boundary layer plots</span>        
         </div>
         <h3>XFoil comparison</h3>
         <p class="desc">
@@ -723,6 +758,12 @@
             produced a representative wing structure using XFLR5,
             SOLIDWORKS, and laser cutting.
           </p>
+          <ul class="hb-tags">
+            <li>XFLR5</li>
+            <li>SOLIDWORKS</li>
+            <li>Python</li>
+            <li>Laser cutting</li>
+          </ul>
         </div>
         <h3>Project overview</h3>
         <p class="desc">
@@ -797,8 +838,7 @@
           section, which I then laser cut from 3mm plywood. I then threaded
           the ribs onto the dual spar structure and glued them in place.
         </p>
-        <br>
-        <p class="desc">
+        <p class="desc desc-lead">
           The finished half-span served as a representative model of
           my wing design and concluded the project.
         </p>
@@ -828,6 +868,11 @@
             winning the competition
             outright against around 300 fellow engineering students.
           </p>
+          <ul class="hb-tags">
+            <li>Aerodynamic design</li>
+            <li>Manufacture</li>
+            <li>Iterative testing</li>
+          </ul>
         </div>
         <h3>Challenge</h3>
         <p class="desc">
@@ -847,7 +892,7 @@
         </p>
         <h3>Competition result</h3>
         <p class="desc">
-          The final design proved itself reliable and ultimately won the competition - outperforming nearly 300 fellow engineering students.
+          The final design proved itself reliable and ultimately won the competition - outperforming around 300 fellow engineering students.
         </p>
       </div>
     </details>
