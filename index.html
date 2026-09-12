@@ -281,7 +281,7 @@ roll_deg = constrain(roll_deg, -90, 90);
         <span class="hb-label">At a glance</span>
         <p class="hb-text">
           Concepted, researched and designed a fixed wing UAV with a
-          suitable payload as part of a group. I Then individually designed and
+          suitable payload as part of a group, then individually designed and
           produced a representative wing structure using XFLR5,
           SOLIDWORKS, and laser cutting.
         </p>
@@ -289,7 +289,7 @@ roll_deg = constrain(roll_deg, -90, 90);
       <h3>Project overview</h3>
       <p class="desc">
         Working as a group, we were tasked with defining a UAV concept,
-        function appropriate payload. We then individualy designed and
+        function, and appropriate payload. We then individually designed and
         produced a representative wing structure.
       </p>
       <h3>Secondary research</h3>
@@ -299,7 +299,7 @@ roll_deg = constrain(roll_deg, -90, 90);
         We then researched natural disasters, and decided to specialise in
         floods. This decision was made due to suitable warning times,
         allowing a UAV to be deployed in time,
-        and relatively managable air conditions for UAV flight.
+        and relatively manageable air conditions for UAV flight.
         I then researched suitable spar materials for the wing.
       </p>
       <h3>Generating a design specification</h3>
@@ -314,7 +314,7 @@ roll_deg = constrain(roll_deg, -90, 90);
       <h3>Ideation and concept selection</h3>
       <p class="desc">
         Each member of the team generated a number of design sketches,
-        before choosing one to take forward to the team.
+        before choosing one to present to the group.
         The team then evaluated each design using a series of go/no-go 
         questions, and a weighted ranking matrix based 
         on the design specification subheadings to
@@ -328,17 +328,17 @@ roll_deg = constrain(roll_deg, -90, 90);
       <p class="desc">
         Using XFLR5,
         I iterated through a series of NACA 4 digit airfoils, and
-        refined the wing geometry in order to maximising aerodynamic
+        refined the wing geometry in order to maximise aerodynamic
         efficiency (lift to drag ratio). The primary constraints I had
         to consider were wing length and aspect ratio, to ensure
-        there was enough internal space to accomodate my spar design.
+        there was enough internal space to accommodate my spar design.
       </p>
       <h3>Python structural analysis</h3>
       <p class="desc">
-        I calculated the maximum tip deflection of the my wing half span
+        I calculated the maximum tip deflection of my wing half span
         using a python script. The script used numerical integration to
-        resolve the the deflection across the wing from 
-        simulated XFLR5 bending moment data,
+        resolve the deflection across the wing from 
+        simulated XFLR5 bending moment data for steady level flight,
         moment of inertia of my chosen spar geometry
         and Young's modulus of my chosen spar material.
         I chose medium modulus carbon fibre as my spar
@@ -351,13 +351,18 @@ roll_deg = constrain(roll_deg, -90, 90);
         by lofting between the airfoil profiles, oriented carefully
         to preserve the wing shape, including twist and sweep.
         The model was fully parameterised - allowing me to adjust the
-        model if nescessary.
+        model if nesessary.
       </p>
       <h3>Laser cutting and assembly</h3>
       <p class="desc">
         From the SOLIDWORKS model, I generated drawings for each unique rib
         section, which I then laser cut from 3mm plywood. I then threaded
         the ribs onto the dual spar structure and glued them in place.
+      </p>
+      <br>
+      <p class="desc">
+        The finished half-span served as a representative model of
+        my wing design and concluded the project.
       </p>
     </section>
 
@@ -370,6 +375,16 @@ roll_deg = constrain(roll_deg, -90, 90);
       <div class="media">
         <img src="assets/glider.jpg" alt="Balsa Wood Glider">
         <span class="caption">FIG. 5 — Balsa Wood Glider</span>
+      </div>
+      <div class="highlight-box">
+        <span class="hb-label">At a glance</span>
+        <p class="hb-text">
+          As a team, designed and manufactured a stable
+          glider from a limited quantity of balsa wood, able to
+          reliably strike a wall-mounted target with accuracy,
+          winning the competition
+          outright against around 300 fellow engineering students.
+        </p>
       </div>
       <h3>Challenge</h3>
       <p class="desc">
@@ -399,18 +414,101 @@ roll_deg = constrain(roll_deg, -90, 90);
         <span class="sheet-tag">FEA&#8212;WD</span>
       </div>
       <h2>ANSYS Finite Element Analysis</h2>
+      <div class="highlight-box">
+        <span class="hb-label">At a glance</span>
+        <p class="hb-text">
+          
+        </p>
+      </div>
+      <h3>Project overview</h3>
+      <p class="desc">
+        I used ANSYS Mechanical across three studies:
+        A 1D cantilever beam, a 2D plate with a hole, and a 3D wing section.
+        I generated and refined meshes, applied boundary conditions
+        and loads, ran simulations, performed convergence studies,
+        processed and plotted results.
+      </p>
+      <h3>1D spring system</h3>
+      <p class="desc">
+        Modelled a spring system of three springs and four nodes
+        with the two end nodes fixed. I applied a longitudinal
+        force to one node and ran the simulation to determine
+        the displacement of, and reaction force on each node
+      </p>
       <div class="media">
         <img src="assets/cantilever.png" alt="ANSYS Finite Element Analysis of a cantilever beam">
         <span class="caption">FIG. 6 — ANSYS Finite Element Analysis of a cantilever beam</span>
       </div>
+      <h3>Static analysis of a 1D cantilever beam</h3>
+      <p class="desc">
+        I modelled a steel beam H-section with known properties,
+        fixed at one end. In order to identify the optimal beam
+        thickness, I applied a point load of 1000N to the beam,
+        and refined beam thickness until
+        the maximum stress in the beam was less than the
+        stated yield stress of the material. This revealed the
+        optimal beam thickness to save weight as 3.08mm.
+        This beam thickness was then used in subsequent studies.
+      </p>
+      <h3>Varying loading conditions</h3>
+      <p class="desc">
+        I compared the maximium bending moment of the beam (which
+        occurs at the root) for three loading conditions: point,
+        uniform distributed and elliptical loading.
+        Each load had a total magnitude
+        of 1000N. Point loading resulted in the highest maximum bending
+        moment at 268Nm, uniform loading gave 134Nm, and elliptical
+        loading resulted in the lowest at 110Nm.
+      </p>
+      <h3>Mesh independence study</h3>
+      <p class="desc">
+        I increased the number of beam divisions from 5 to 200 and then
+        beyond, and plotted this against maximum stress and tip deflection.
+        I found that tip deflection converged at around 75 divisions,
+        whereas maximum stress did not converge until around 200 divisions.
+        I concluded that usually in FEA, a balance must be established
+        between mesh resolution and computational cost, however with
+        such a simple model in this example this was not necessary and
+        I was able to resolve the model at 50,000 divisions in the same time
+        as 5 to 200.
+      </p>
       <div class="media">
         <img src="assets/vonMises.png" alt="ANSYS FEA showing the Von Mises stress distribution of a plate with a hole">
         <span class="caption">FIG. 7 — ANSYS FEA showing the Von Mises stress distribution of a plate with a hole</span>
       </div>
+      <h3>2D plate with a hole</h3>
       <p class="desc">
-        Replace this paragraph with a short write-up: build
-        constraints, trimming and balance, and the competition
-        result.
+        I defined a 2D plate with an off-centre circular hole cut out, fixed along
+        one edge, with a negative pressure applied along the opposite
+        edge - pulling the plate apart.
+      </p>
+      <h3>Mesh sensitivity study</h3>
+      <p class="desc">
+        For a set of three different hole radii, I ran a mesh-converged
+        study across three mesh sizes. I plotted mesh size against maximum
+        stress, hole radius against maximum stress, and hole radius against
+        safety factor. I found that the maximum stress and 
+        stress-concentration factor increased with
+        hole radius, due to reduced ligament width between the hole
+        and plate edge.
+      </p>
+      <h3>Hole offset study</h3>
+      <p class="desc">
+        I varied the hole offset distance from the centre of the plate
+        in the X and Y directions and investigated the effect on
+        stress-concentration factor (SCF). I discovered, at equal ligament
+        width, the SCF was much higher when the hole was closer to
+        the loaded edge; 4.78 compared to 3.27 on the unloaded side of the
+        centre. This is because stresses near the loaded edge must
+        redistribute over a shorter distance.
+      </p>
+      <h3></h3>
+      <p class="desc">
+        
+      </p>
+      <h3></h3>
+      <p class="desc">
+        
       </p>
       <div class="media">
         <img src="assets/convergenceStudy.png" alt="ANSYS FEA convergence study on two types different systems of equations for the same plate with a hole">
@@ -428,10 +526,15 @@ roll_deg = constrain(roll_deg, -90, 90);
         <img src="assets/mesh.png" alt="ANSYS CFD showing a coarse wing mesh">
         <span class="caption">FIG. 7 — Coarse wing mesh</span>
       </div>
+            <div class="highlight-box">
+        <span class="hb-label">At a glance</span>
+        <p class="hb-text">
+          
+        </p>
+      </div>
+      <h3>Project overview</h3>
       <p class="desc">
-        Replace this paragraph with a short write-up: build
-        constraints, trimming and balance, and the competition
-        result.
+        
       </p>
       <div class="media">
         <img src="assets/airPressure.png" alt="ANSYS CFD showing the air pressure around the airfoil">
@@ -458,10 +561,15 @@ roll_deg = constrain(roll_deg, -90, 90);
         <img src="assets/windTunnel.jpg" alt="Wind tunnel testing of a wing section">
         <span class="caption">FIG. 9 — Wind tunnel testing of a wing section</span>        
       </div>
+            <div class="highlight-box">
+        <span class="hb-label">At a glance</span>
+        <p class="hb-text">
+          
+        </p>
+      </div>
+      <h3>Project overview</h3>
       <p class="desc">
-        Replace this paragraph with a short write-up: build
-        constraints, trimming and balance, and the competition
-        result.
+        
       </p>
     </section>
 
@@ -475,10 +583,15 @@ roll_deg = constrain(roll_deg, -90, 90);
         <img src="assets/steeringWheel.jpg" alt="Mock F1 steering wheel">
         <span class="caption">FIG. 10 — Mock F1 steering wheel I produced during my work experience</span>
       </div>
+            <div class="highlight-box">
+        <span class="hb-label">At a glance</span>
+        <p class="hb-text">
+          
+        </p>
+      </div>
+      <h3>Project overview</h3>
       <p class="desc">
-        Replace this paragraph with a short write-up: build
-        constraints, trimming and balance, and the competition
-        result.
+        
       </p>
     </section>
 
