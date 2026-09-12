@@ -17,3 +17,27 @@
   rect.style.strokeDasharray = length;
   rect.style.setProperty("--frame-length", length);
 })();
+
+function openSheetFromHash() {
+  const hash = window.location.hash;
+  if (!hash) return;
+  const target = document.querySelector(hash);
+  if (target && target.tagName === 'DETAILS') {
+    target.open = true;
+  }
+}
+
+// Handle direct links/reloads with a hash already in the URL
+openSheetFromHash();
+
+// Handle nav clicks and back/forward navigation
+window.addEventListener('hashchange', openSheetFromHash);
+
+document.querySelectorAll('.sheet-index a').forEach(link => {
+  link.addEventListener('click', () => {
+    const target = document.querySelector(link.getAttribute('href'));
+    if (target && target.tagName === 'DETAILS') {
+      target.open = true;
+    }
+  });
+});

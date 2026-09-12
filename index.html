@@ -21,766 +21,836 @@
 
   <header class="hero" id="top">
     <div class="hero-inner">
-      <h1>Barnaby Crossman</h1>
+      <div class="hero-top-row">
+        <h1>Barnaby Crossman</h1>
+      </div>
       <p class="role">Aeronautics &amp; Astronautics Engineering Undergraduate at the University of Southampton</p>
       <p class="intro">
-        Engineering portfolio showcasing UAV design, aerodynamics
-        projects, and CAD work.
+        Engineering portfolio showcasing design, testing, analysis, simulation and computational work
       </p>
       <nav class="sheet-index" aria-label="Project sheets">
         <a href="#sheet-01"><span class="idx">01</span>Gimbal</a>
-        <a href="#sheet-02"><span class="idx">02</span>Fixed&nbsp;Wing</a>
-        <a href="#sheet-03"><span class="idx">03</span>Glider</a>
+        <a href="#sheet-02"><span class="idx">02</span>Mercedes&nbsp;F1</a>
+        <a href="#sheet-03"><span class="idx">03</span>CFD</a>
+        <a href="#sheet-04"><span class="idx">04</span>FEA</a>
+        <a href="#sheet-05"><span class="idx">05</span>Wind&nbsp;Tunnel</a>
+        <a href="#sheet-06"><span class="idx">06</span>Fixed&nbsp;Wing</a>
+        <a href="#sheet-07"><span class="idx">07</span>Glider</a>
       </nav>
     </div>
   </header>
 
   <main id="main">
 
-    <section class="sheet" id="sheet-01">
-      <div class="sheet-head">
-        <span class="sheet-no">SHEET 01 / 07</span>
-        <span class="sheet-tag">UAV&#8212;GMB</span>
-      </div>
-      <h2>Year 2 Fixed Wing UAV Group project </h2>
-      <div class="media">
-        <video autoplay loop muted playsinline aria-label="Demo of the articulated gimbal assembly moving through its range of motion">
-          <source src="assets/gimbal-demo.mp4" type="video/mp4">
-          Your browser does not support embedded video.
-        </video>
-        <span class="caption">FIG. 1 — Articulated gimbal demo</span>
-      </div>
-      <div class="highlight-box">
-        <span class="hb-label">At a glance</span>
-        <p class="hb-text">
-          In this project, I independently designed, built and programmed
-          a dual-axis stabilised
-          camera gimbal against a formal engineering spec. I used SOLIDWORKS
-          for design, modelling and technical drawings.
-          I programmed an Arduino microcontroller handling I2C, complementary
-          filtering, and a
-          custom control system. I used 3D printing
-          and laser cutting to manufacture and iterate physical prototypes.
-          My gimbal's final score of 14.2
-          was the second best that I am aware of across the course.
+    <details class="sheet" id="sheet-01" open>
+      <summary class="sheet-summary">
+        <div class="sheet-head">
+          <span class="sheet-no">SHEET 01 / 07</span>
+          <span class="sheet-tag">DES&#8212;GMB</span>
+        </div>
+        <h2>Year 2 Fixed Wing UAV Gimbal</h2>
+      </summary>
+
+      <div class="sheet-body">
+        <div class="media">
+          <video autoplay loop muted playsinline aria-label="Demo of the articulated gimbal assembly moving through its range of motion">
+            <source src="assets/gimbal-demo.mp4" type="video/mp4">
+            Your browser does not support embedded video.
+          </video>
+          <span class="caption">FIG. 1 — Articulated gimbal demo</span>
+        </div>
+        <div class="highlight-box">
+          <span class="hb-label">At a glance</span>
+          <p class="hb-text">
+            In this project, I independently designed, built and programmed
+            a dual-axis stabilised
+            camera gimbal against a formal engineering spec. I used SOLIDWORKS
+            for design, modelling and technical drawings.
+            I programmed an Arduino microcontroller handling I2C, complementary
+            filtering, and a
+            custom control system. I used 3D printing
+            and laser cutting to manufacture and iterate physical prototypes.
+            My gimbal's final score of 14.2
+            was the second best that I am aware of across the course.
+          </p>
+        </div>
+        <h3>Project overview</h3>
+        <p class="desc">
+          Working within a 6 person team to design a
+          wing and camera gimbal for a fixed wing UAV,
+          I was individually responsible for the design and 
+          manufacture of the articulated gimbal assembly.
+          The dual axis gimbal was to be powered by an
+          Arduino microcontroller,
+          IMU and two servo motors and served
+          to counteract pitch and roll
+          disturbances and maintain a level camera orientation.
+        </p>
+        <h3>Satisfying design requirements</h3>
+        <p class="desc">
+          I developed the gimbal against a formal system specification
+          published by the university. These requirements included:
+        </p>
+        <ul class="desc-list">
+          <li>The gimbal system should be actively stabilised</li>
+          <li>The gimbal system must stabilise the camera to 0°
+            pitch and 0° roll relative to the horizon
+          </li>
+          <li>The gimbal system must be capable of cancelling pitch and roll
+            angles +/- 30°
+          </li>
+          <li>The gimbal system must be capable of cancelling pitch and roll
+            rates of 90° per second and roll rates of 90° per second
+          </li>
+          <li>The system must begin stabilising within 5 seconds of
+            power being applied and does not
+            require any interaction (i.e. pressing a button)
+          </li>
+          <li>The gimbal system must be powered by the provided
+            5V 2A DC power supply only (the
+            FPV camera system is powered separately)
+          </li>
+        </ul>
+        <div class="media">
+          <img src="assets/gimbalAssemblyDrw.jpg" alt="SOLIDWORKS drawing of the gimbal assembly">
+          <span class="caption">FIG. 2 — SOLIDWORKS drawing of the gimbal assembly</span>
+        </div>
+        <div class="media">
+          <img src="assets/cameraSlotDrw.jpg" alt="SOLIDWORKS drawing of the camera mounting slot">
+          <span class="caption">FIG. 3 — SOLIDWORKS drawing of the camera mounting slot</span>
+        </div>
+        <h3>Design and SOLIDWORKS modelling</h3>
+        <p class="desc">
+          I modelled a fully parameterised, equation-driven
+          assembly allowing for rapid iteration and
+          testing of design configurations and
+          tolerances without the need to remodel the assembly
+          from scratch.
+        </p>
+        <p class="desc">
+          The assembly was fully constrained and
+          articulated, allowing me to demonstrate
+          and evaluate the full range of
+          motion of the gimbal and any potential
+          collisions before manufacturing.
+        </p>
+        <h3>Arduino programming</h3>
+        <p class="desc">
+          I developed an Arduino program to stabilise the
+          gimballed camera
+          by decoding incoming IMU data (using the I2C protocol), resolving the
+          appropriate control output and actuating the
+          dual servo motors.
+          <a href="https://github.com/barney-git/uav-gimbal-code" target="_blank"
+            rel="noopener" class="code-link">
+            View full code on GitHub
+          </a>
+        </p>
+        <h3>The IMU</h3>
+        <p class="desc">
+          The IMU was a 6 DOF sensor, providing accelerometer
+          and gyroscope data.
+          I developed a complementary filter to combine the
+          sensor data into a single orientation estimate.
+        </p>
+        <h3>PID Control systems</h3>
+        <p class="desc">
+          Live telemetry testing revealed that the initial PID was
+          unreliable:
+          The servos used absolute position commands
+          rather than velocity inputs, so that a
+          proportional gain less than 1 would result in
+          persistent steady-state error.
+          I replaced this with an integral-only
+          controller. A tuned coefficient for 
+          each axis (pitch and roll) controlled what
+          percentage of calculated error to be
+          applied to the servo position each iteration.
+          This approach converged quickly,
+          eliminating error and
+          stabilising the gimbal.
+        </p>
+        <div class="media">
+          <img src="assets/gimbal_manufacture.jpg" alt="Gimbal assembly in manufacturing process">
+          <span class="caption">FIG. 4 — Gimbal assembly</span>
+        </div>
+        <h3>3D printing</h3>
+        <p class="desc">
+          From the SOLIDWORKS parts,
+          I 3D printed a series of prototype components in PLA
+          to test the tolerances I had designed.
+          The first iterations revealed fitment issues
+          with the servo motors, which I resolved by adjusting
+          the tolerance parameters in SOLIDWORKS.
+          My final design was also printed with reduced
+          infill to reduce weight and material usage.
+          I also used variable layer heights to
+          produce a better
+          finish on, and fitment between, curved surfaces,
+          while reducing print time elsewhere.
+        </p>
+        <h3>Laser cutting</h3>
+        <p class="desc">
+          I generated SOLIDWORKS drawings and
+          laser cut the flat base components of the gimbal
+          from 3mm plywood. This provided a lightweight, 
+          stable and rigid base from which to mount the servo
+          motors and gimbal assembly. Laser cutting was
+          chosen for its speed and accuracy, allowing a much
+          tighter fit on the box joints, and Plywood
+          would save considerable weight over a 3D printed base.
+        </p>
+        <h3>Arduino circuitry</h3>
+        <p class="desc">
+          I designed a circuit to allow the Arduino to be easily removed
+          and reused in future projects, control the dual servo motors, and
+          be powered by a 5V power supply from the UAV.
+        </p>
+        <div class="code-block">
+          <pre><code>
+  float a_pitch_wrapped = fmod((a_pitch - pitch) + PI, 2*PI) - PI + pitch;
+  float a_roll_wrapped  = fmod((a_roll  - roll)  + PI, 2*PI) - PI + roll;
+
+  pitch = alpha * (pitch + g_pitch) + (1 - alpha) * a_pitch_wrapped;
+  roll  = alpha * (roll  + g_roll)  + (1 - alpha) * a_roll_wrapped;
+
+  float pitch_deg = (pitch * 180 / PI);
+  float roll_deg = (roll * 180 / PI) + 180;
+
+  pitch_deg = constrain(pitch_deg, -90, 90);
+  roll_deg = constrain(roll_deg, -90, 90);
+          </code></pre>
+          <span class="caption">FIG. 5 — IMU data wrapping code</span>
+        </div>
+        <h3>Testing and iteration</h3>
+        <p class="desc">
+          Testing exposed three significant issues with the gimbal:
+        </p>
+        <h4>Discontinuity error</h4>
+        <p class="desc">
+          The inverted IMU orientation caused the
+          IMU readings 
+          to jump between +/- 179° when the camera oscillated around level.
+          This caused massive, erroneous spikes in the control response.
+          I resolved this by unwrapping the IMU output to a continuous range
+          before calculating the control output.
+        </p>        
+        <h4>Startup transient error</h4>
+        <p class="desc">
+          Delay in the startup of the IMU would supply
+          false zero values to the control system. The unwrapping logic
+          turned these values into +/- 179°, causing the control system to
+          incorrectly react to a huge disturbance. This was resolved by delaying
+          the initiation of the control loop until the IMU was functional,
+          while ensuring the system remained within the specification
+          startup time.
+        </p>
+        <h4>Strain or chafing of the power cable</h4>
+        <p class="desc">
+          The camera was mounted
+          too far from the UAV power lead. This was fixed simply by reducing
+          the size of the plywood frame.   
+        </p>
+        <p class="desc desc-lead">
+          Finally I tested and adjusted the control system coefficients to
+          optimise settling time and smooth out jerky initial responses.
+        </p>
+        <div class="media">
+          <img src="assets/gimbalResults.jpg" alt="Scoring plots from gimbal testing">
+          <span class="caption">FIG. 6 — Gimbal test results</span>
+        </div>
+        <h3>Evaluation</h3>
+        <p class="desc">
+          The completed gimbal was evaluated by University of Southampton demonstrators
+          by mounting a laser pointer in place of the camera, and tracking the
+          path traced by the laser within a series of boxes shown above.
+          Penalties were applied for exceeding the central box, scaled by
+          distance from the centre, thus a lower
+          score is better.
+        </p>
+        <h3>Results</h3>
+        <p class="desc">
+          As seen above, the gimbal performed well and remained primarily within
+          the central area, earning minimal penalties for overshooting.
+          My low score of 14.2 demonstrates the effectiveness of my mechanical design
+          and control system. Full results were not published, but
+          this is the second-best result I am aware of, with several groups' scores
+          running into the hundreds.
         </p>
       </div>
-      <h3>Project overview</h3>
-      <p class="desc">
-        Working within a 6 person team to design a
-        wing and camera gimbal for a fixed wing UAV,
-        I was individually responsible for the design and 
-        manufacture of the articulated gimbal assembly.
-        The dual axis gimbal was to be powered by an
-        Arduino microcontroller,
-        IMU and two servo motors and served
-        to counteract pitch and roll
-        disturbances and maintain a level camera orientation.
-      </p>
-      <h3>Satisfying design requirements</h3>
-      <p class="desc">
-        I developed the gimbal against a formal system specification
-        published by the university. These requirements included:
-      </p>
-      <ul class="desc-list">
-        <li>The gimbal system should be actively stabilised</li>
-        <li>The gimbal system must stabilise the camera to 0°
-          pitch and 0° roll relative to the horizon
-        </li>
-        <li>The gimbal system must be capable of cancelling pitch and roll
-          angles +/- 30°
-        </li>
-        <li>The gimbal system must be capable of cancelling pitch and roll
-          rates of 90° per second and roll rates of 90° per second
-        </li>
-        <li>The system must begin stabilising within 5 seconds of
-          power being applied and does not
-          require any interaction (i.e. pressing a button)
-        </li>
-        <li>The gimbal system must be powered by the provided
-          5V 2A DC power supply only (the
-          FPV camera system is powered separately)
-        </li>
-      </ul>
-      <div class="media">
-        <img src="assets/gimbalAssemblyDrw.jpg" alt="SOLIDWORKS drawing of the gimbal assembly">
-        <span class="caption">FIG. 1 — SOLIDWORKS drawing of the gimbal assembly</span>
-      </div>
-      <div class="media">
-        <img src="assets/cameraSlotDrw.jpg" alt="SOLIDWORKS drawing of the camera mounting slot">
-        <span class="caption">FIG. 1 — SOLIDWORKS drawing of the camera mounting slot</span>
-      </div>
-      <h3>Design and SOLIDWORKS modelling</h3>
-      <p class="desc">
-        I modelled a fully <strong>parameterised, equation-driven</strong>
-        assembly allowing for rapid iteration and
-        testing of design configurations and
-        tolerances without the need to remodel the assembly
-        from scratch.
-      </p>
-      <p class="desc">
-        The assembly was <strong>fully constrained and
-        articulated</strong>, allowing me to demonstrate
-        and evaluate the full range of
-        motion of the gimbal and any potential
-        collisions before manufacturing.
-      </p>
-      <h3>Arduino programming</h3>
-      <p class="desc">
-        I developed an Arduino program to stabilise the
-        gimballed camera
-        by decoding incoming IMU data (using the I2C protocol), resolving the
-        appropriate control output and actuating the
-        dual servo motors.
-        <a href="https://github.com/barney-git/uav-gimbal-code" target="_blank"
-          rel="noopener" class="code-link">
-          View full code on GitHub
-        </a>
-      </p>
-      <h3>The IMU</h3>
-      <p class="desc">
-        The IMU was a 6 DOF sensor, providing accelerometer
-        and gyroscope data.
-        I developed a complementary filter to combine the
-        sensor data into a single orientation estimate.
-      </p>
-      <h3>PID Control systems</h3>
-      <p class="desc">
-        Live telemetry testing revealed that the initial PID was
-        unreliable:
-        The servos used absolute position commands
-        rather than velocity inputs, so that a
-        proportional gain less than 1 would result in
-        persistent steady-state error.
-        I replaced this with an integral-only
-        controller. A tuned coefficient for 
-        each axis (pitch and roll) controlled what
-        percentage of calculated error to be
-        applied to the servo position each iteration.
-        This approach converged quickly,
-        eliminating error and
-        stabilising the gimbal.
-      </p>
-      <div class="media">
-        <img src="assets/gimbal_manufacture.jpg" alt="Gimbal assembly in manufacturing process">
-        <span class="caption">FIG. 2 — Gimbal assembly</span>
-      </div>
-      <h3>3D printing</h3>
-      <p class="desc">
-        From the SOLIDWORKS parts,
-        I 3D printed a series of prototype components in PLA
-        to test the tolerances I had designed.
-        The first iterations revealed fitment issues
-        with the servo motors, which I resolved by adjusting
-        the tolerance parameters in SOLIDWORKS.
-        My final design was also printed with reduced
-        infill to reduce weight and material usage.
-        I also used variable layer heights to
-        produce a better
-        finish on, and fitment between, curved surfaces,
-        while reducing print time elsewhere.
-      </p>
-      <h3>Laser cutting</h3>
-      <p class="desc">
-        I generated SOLIDWORKS drawings and
-        laser cut the flat base components of the gimbal
-        from 3mm plywood. This provided a lightweight, 
-        stable and rigid base from which to mount the servo
-        motors and gimbal assembly. Laser cutting was
-        chosen for its speed and accuracy, allowing a much
-        tighter fit on the box joints, and Plywood
-        would save considerable weight over a 3D printed base.
-      </p>
-      <h3>Arduino circuitry</h3>
-      <p class="desc">
-        I designed a circuit to allow the Arduino to be easily removed
-        and reused in future projects, control the dual servo motors, and
-        be powered by a 5V power supply from the UAV.
-      </p>
-      <div class="code-block">
-        <pre><code>
-float a_pitch_wrapped = fmod((a_pitch - pitch) + PI, 2*PI) - PI + pitch;
-float a_roll_wrapped  = fmod((a_roll  - roll)  + PI, 2*PI) - PI + roll;
+    </details>
 
-pitch = alpha * (pitch + g_pitch) + (1 - alpha) * a_pitch_wrapped;
-roll  = alpha * (roll  + g_roll)  + (1 - alpha) * a_roll_wrapped;
+    <details class="sheet" id="sheet-02" open>
+      <summary class="sheet-summary">
+        <div class="sheet-head">
+          <span class="sheet-no">SHEET 02 / 07</span>
+          <span class="sheet-tag">IND&#8212;MRC</span>
+        </div>
+        <h2>Mercedes-AMG Petronas Formula One Team work experience</h2>
+      </summary>
 
-float pitch_deg = (pitch * 180 / PI);
-float roll_deg = (roll * 180 / PI) + 180;
-
-pitch_deg = constrain(pitch_deg, -90, 90);
-roll_deg = constrain(roll_deg, -90, 90);
-        </code></pre>
-        <span class="caption">FIG. 3 — IMU data wrapping code</span>
-      </div>
-      <h3>Testing and iteration</h3>
-      <p class="desc">
-        Testing exposed three significant issues with the gimbal:
-      </p>
-      <h4>Discontinuity error</h4>
-      <p class="desc">
-        The inverted IMU orientation caused the
-        IMU readings 
-        to jump between +/- 179° when the camera oscillated around level.
-        This caused massive, erroneous spikes in the control response.
-        I resolved this by unwrapping the IMU output to a continuous range
-        before calculating the control output.
-      </p>        
-      <h4>Startup transient error</h4>
-      <p class="desc">
-        Delay in the startup of the IMU would supply
-        false zero values to the control system. The unwrapping logic
-        turned these values into +/- 179°, causing the control system to
-        incorrectly react to a huge disturbance. This was resolved by delaying
-        the initiation of the control loop until the IMU was functional,
-        while ensuring the system remained within the specification
-        startup time.
-      </p>
-      <h4>Strain or chafing of the power cable</h4>
-      <p class="desc">
-        The camera was mounted
-        too far from the UAV power lead. This was fixed simply by reducing
-        the size of the plywood frame.   
-      </p>
-      <br>
-      <p class="desc">
-        Finally I tested and adjusted the control system coefficients to
-        optimise settling time and smooth out jerky initial responses.
-      </p>
-      <div class="media">
-        <img src="assets/gimbalResults.jpg" alt="Scoring plots from gimbal testing">
-        <span class="caption">FIG. 2 — Gimbal test results</span>
-      </div>
-      <h3>Evaluation</h3>
-      <p class="desc">
-        The completed gimbal was evaluated by University of Southampton demonstrators
-        by mounting a laser pointer in place of the camera, and tracking the
-        path traced by the laser within a series of boxes shown above.
-        Penalties were applied for exceeding the central box, scaled by
-        distance from the centre, thus a lower
-        score is better.
-      </p>
-      <h3>Results</h3>
-      <p class="desc">
-        As seen above, the gimbal performed well and remained primarily within
-        the central area, earning minimal penalties for overshooting.
-        My low score of 14.2 demonstrates the effectiveness of my mechanical design
-        and control system. Full results were not published, but
-        this is the second-best result I am aware of, with several groups' scores
-        running into the hundreds.
-      </p>
-    </section>
-
-    <section class="sheet" id="sheet-02">
-      <div class="sheet-head">
-        <span class="sheet-no">SHEET 02 / 07</span>
-        <span class="sheet-tag">UAV&#8212;FXW</span>
-      </div>
-      <h2>Year 1 Fixed Wing UAV design project</h2>
-      <div class="highlight-box">
-        <span class="hb-label">At a glance</span>
-        <p class="hb-text">
-          Concepted, researched and designed a fixed wing UAV with a
-          suitable payload as part of a group, then individually designed and
-          produced a representative wing structure using XFLR5,
-          SOLIDWORKS, and laser cutting.
+      <div class="sheet-body">
+        <div class="media">
+          <img src="assets/steeringWheel.jpg" alt="Mock F1 steering wheel">
+          <span class="caption">FIG. 1 — Mock F1 steering wheel I produced during my work experience</span>
+        </div>
+              <div class="highlight-box">
+          <span class="hb-label">At a glance</span>
+          <p class="hb-text">
+            I spent a week immersed in the aerodynamics department at
+            Mercedes-AMG Petronas F1 team in Brackley, gaining invaluable
+            insight into the design, manufacture and testing of aerodynamic
+            components for their cars. During my time there, I completed a
+            project of my own, making use of some of the most important
+            tools and machines involved in rapid prototyping.
+            Throughout this experience I met some amazing people who
+            had built such a great working environment, and this became
+            a large part of my motivation to pursue Aerospace engineering
+            at university.
+          </p>
+        </div>
+        <h3>Steering wheel model</h3>
+        <p class="desc">
+          I produced a mock Formula One steering wheel, cutting and hand
+          finishing an aluminium plaque, hand-laying carbon fibre sheets bonded
+          with resin for the base, sandblasting and hand finishing 3D printed
+          parts in a number of materials and assembling the final product
+          using a range of workshop fixtures and tools.
+        </p>
+        <h3>Equipment demonstrations</h3>
+        <p class="desc">
+          I was given an in depth tour and explanation of the full sized wind
+          tunnel at the facility, and was taught the setup and calibration
+          process of the impressive five-axis CNC machines in the machine shop.
+        </p>
+        <h3>Quality control and metrology</h3>
+        <p class="desc">
+          I spent time in quality control, learning about the rigorous
+          processes and standards that ensure high performance parts are
+          manufactured within tight tolerances.
+          I gained hands-on experience with a
+          delicate, ruby-tipped coordinate measuring machine (CMM),
+          alongside laser and microscope measurements, verifying
+          manufactured parts against CAD models. During my stint in the
+          department I discovered an incorrect dimension on a part, and
+          correctly rejected it.
         </p>
       </div>
-      <h3>Project overview</h3>
-      <p class="desc">
-        Working as a group, we were tasked with defining a UAV concept,
-        function, and appropriate payload. We then individually designed and
-        produced a representative wing structure.
-      </p>
-      <h3>Secondary research</h3>
-      <p class="desc">
-        We chose to design an emergency broadcast UAV, to provide early
-        warnings to people in remote and/or unconnected areas.
-        We then researched natural disasters, and decided to specialise in
-        floods. This decision was made due to suitable warning times,
-        allowing a UAV to be deployed in time,
-        and relatively manageable air conditions for UAV flight.
-        I then researched suitable spar materials for the wing.
-      </p>
-      <h3>Generating a design specification</h3>
-      <p class="desc">
-        As a team we developed a design specification governing performance,
-        safety, cost, environmental impact and form.
-      </p>
-      <div class="media">
-        <img src="assets/Crazy8s.png" alt="8 (Crazy 8s) Ideation sketches for overall UAV design">
-        <span class="caption">FIG. 3 — UAV initial design sketches</span>
-      </div>
-      <h3>Ideation and concept selection</h3>
-      <p class="desc">
-        Each member of the team generated a number of design sketches,
-        before choosing one to present to the group.
-        The team then evaluated each design using a series of go/no-go 
-        questions, and a weighted ranking matrix based 
-        on the design specification subheadings to
-        score each concept and numerically determine the best design.
-      </p>
-      <div class="media">
-        <img src="assets/wings_and_data.png" alt="4 Wing designs in XFLR5 and corresponding lift/drag ratio polar plots">
-        <span class="caption">FIG. 4 — XFLR5 wing design iterations with corresponding lift/drag ratios</span>
-      </div>
-      <h3>Aerodynamic design in XFLR5</h3>
-      <p class="desc">
-        Using XFLR5,
-        I iterated through a series of NACA 4 digit airfoils, and
-        refined the wing geometry in order to maximise aerodynamic
-        efficiency (lift to drag ratio). The primary constraints I had
-        to consider were wing length and aspect ratio, to ensure
-        there was enough internal space to accommodate my spar design.
-      </p>
-      <h3>Python structural analysis</h3>
-      <p class="desc">
-        I calculated the maximum tip deflection of my wing half span
-        using a python script. The script used numerical integration to
-        resolve the deflection across the wing from 
-        simulated XFLR5 bending moment data for steady level flight,
-        moment of inertia of my chosen spar geometry
-        and Young's modulus of my chosen spar material.
-        I chose medium modulus carbon fibre as my spar
-        material in order to keep tip deflection below
-        10% of wing span, as per the design specification.
-      </p>
-      <h3>SOLIDWORKS model</h3>
-      <p class="desc">
-        I painstakingly reconstructed the wing geometry in SOLIDWORKS,
-        by lofting between the airfoil profiles, oriented carefully
-        to preserve the wing shape, including twist and sweep.
-        The model was fully parameterised - allowing me to adjust the
-        model if nesessary.
-      </p>
-      <h3>Laser cutting and assembly</h3>
-      <p class="desc">
-        From the SOLIDWORKS model, I generated drawings for each unique rib
-        section, which I then laser cut from 3mm plywood. I then threaded
-        the ribs onto the dual spar structure and glued them in place.
-      </p>
-      <br>
-      <p class="desc">
-        The finished half-span served as a representative model of
-        my wing design and concluded the project.
-      </p>
-    </section>
+    </details>
 
-    <section class="sheet" id="sheet-03">
-      <div class="sheet-head">
-        <span class="sheet-no">SHEET 03 / 07</span>
-        <span class="sheet-tag">GLD&#8212;WD</span>
-      </div>
-      <h2>Balsa Wood Glider Competition</h2>
-      <div class="media">
-        <img src="assets/glider.jpg" alt="Balsa Wood Glider">
-        <span class="caption">FIG. 5 — Balsa Wood Glider</span>
-      </div>
-      <div class="highlight-box">
-        <span class="hb-label">At a glance</span>
-        <p class="hb-text">
-          As a team, designed and manufactured a stable
-          glider from a limited quantity of balsa wood, able to
-          reliably strike a wall-mounted target with accuracy,
-          winning the competition
-          outright against around 300 fellow engineering students.
+    <details class="sheet" id="sheet-03" open>
+      <summary class="sheet-summary">
+        <div class="sheet-head">
+          <span class="sheet-no">SHEET 03 / 07</span>
+          <span class="sheet-tag">SIM&#8212;CFD</span>
+        </div>
+        <h2>ANSYS Computational Fluid Dynamics</h2>
+      </summary>
+
+      <div class="sheet-body">
+        <div class="highlight-box">
+          <span class="hb-label">At a glance</span>
+          <p class="hb-text">
+            I used ANSYS Fluent inside of ANSYS-Workbench to run
+            Euler CFD calculations for a 3D wing, and to
+            resolve viscous CFD for laminar and turbulent boundary layers
+            along a plate. I generated and imported CAD geometry,
+            meshed the flow domain around the wing, applied boundary conditions,
+            applied flow conditions, solved simulations using various methods,
+            and processed, plotted and compared results to theory.
+          </p>
+        </div>
+        <h3>CAD model generation in OpenVSP</h3>
+        <p class="desc">
+          In OpenVSP, I created a half-span wing model using a
+          NACA 1614 airfoil, and exported the model.
+        </p>
+        <h3>ANSYS-Workbench setup</h3>
+        <p class="desc">
+          Using the "3D" analysis type, I created a new design modeller
+          geometry and imported the half-span wing model from OpenVSP.
+          I then created a cuboid bounding box, starting from the
+          wing root, which
+          extended outwards past the wing tip, and either side of the
+          leading and trailing edges. The wing form was then subtracted
+          from this bounding box to create the flow volume.
+        </p>
+        <div class="media">
+          <img src="assets/mesh.png" alt="ANSYS CFD showing a coarse wing mesh">
+          <span class="caption">FIG. 1 — Coarse wing mesh</span>
+        </div>
+        <h3>Meshing</h3>
+        <p class="desc">
+          I generated initial unstructured meshes
+          with element sizes of 0.2m (coarse), 0.05m (medium) and 0.01m (fine).
+          Separately, I used curvature capture, and ran combined Hessian
+          grid adaptation
+          until convergence to refine the mesh in areas with complicated flows.
+        </p>
+        <h3>ANSYS Fluent</h3>
+        <p class="desc">
+          I used the "pressure-based, steady" solver, with air
+          as the working fluid and simulation set to inviscid.
+          I established the flow speed and angle of incidence
+          (effectively the angle of attack) at the inlet and outlet.
+          I established the wall boundary conditions,
+          initialised tracked variables and initialised the simulation.
+          I ran each case until residuals converged, and repeated
+          for coarse, medium and fine meshes, and then three angles of attack
+          (0°, 4° and 8°) using the medium mesh.
+        </p>
+        <div class="media">
+          <img src="assets/airPressure.png" alt="ANSYS CFD showing the air pressure around the airfoil">
+          <span class="caption">FIG. 2 — ANSYS CFD showing the air pressure around the airfoil</span>
+        </div>
+        <div class="media">
+          <img src="assets/surfacePressure.png" alt="ANSYS CFD showing surface pressure distribution on the wing">
+          <span class="caption">FIG. 3 — ANSYS CFD showing the surface pressure distribution on the wing</span>
+        </div>
+        <h3>Post-processing</h3>
+        <p class="desc">
+          I extracted pressure contour plots for the wing root wall surface,
+          and the wing surface itself. I also plotted pressure coefficient
+          against x position along airfoil surface.
+          I then recorded lift, drag and moment coefficients and
+          compared these results to lifting line theory.
+          The drag coefficient converged towards zero as mesh
+          resolution increased - as expected for an inviscid flow.
+          Lift coefficient however, increased with mesh resolution,
+          likely due to the fact that Fluent resolves vortices in
+          all directions - whereas lifting-line theory is limited
+          to only spanwise vortices.
+        </p>
+        <h3>Flat plate boundary layers</h3>
+        <p class="desc">
+          I ran viscous CFD calculations for a laminar and turbulent boundary
+          layer along the same no-slip flat plate. I extracted 
+          velocity profiles and computed displacement and momentum thickness,
+          and shape factor for each regime. The
+          laminar shape factor (2.43) closely matched the
+          theoretical Blasius value (2.59), and the turbulent
+          shape factor (1.33) fell within the expected
+          1.3-1.4 range. The turbulent velocity profile closely followed the
+          logarithmic
+          law of the wall between y+ ≈ 40-120, against
+          a theoretical applicable range of 30-100.
+          Finally I ran the SST transition model to capture the
+          laminar-turbulent transition, which occurred at
+          approximately 70% of the plate's length.
         </p>
       </div>
-      <h3>Challenge</h3>
-      <p class="desc">
-        The objective of this project was to design and manufacture a glider with stable and consitent flight characteristics, 
-        from a limited supply of balsa wood, a small amount of adhesive and some blue tack ballast.
-        The aircraft would be hand-launched and needed to fly straight, consistently and accurately to strike the wall-mounted target.
-      </p>
-      <h3>Optimising aerodynamic efficiency</h3>
-      <p class="desc">
-        My team and I developed and glider which maximised the aspect ratio of the main wing within the permitted footprint,
-        resulting in high aerodynamic efficiency.
-      </p>
-      <h3>Iteration and testing for stability</h3>
-      <p class="desc">
-        Following iterative testing and refinement we were able to optimise the mass distribution
-        and resulting centre of gravity to acheive stable flight characteristics.
-      </p>
-      <h3>Competition result</h3>
-      <p class="desc">
-        The final design proved itelf reliable and ultimately won the competition - outperforming nearly 300 fellow engineering students.
-      </p>
-    </section>
+    </details>
 
-    <section class="sheet" id="sheet-04">
-      <div class="sheet-head">
-        <span class="sheet-no">SHEET 04 / 07</span>
-        <span class="sheet-tag">FEA&#8212;WD</span>
-      </div>
-      <h2>ANSYS Finite Element Analysis</h2>
-      <div class="highlight-box">
-        <span class="hb-label">At a glance</span>
-        <p class="hb-text">
-          I used ANSYS Mechanical and APDL across a series of studies:
-          A 1D spring system, a 1D cantilever beam,
-          a 2D plate with a hole, and a 3D wing section.
-          I generated and refined meshes, applied boundary conditions,
-          point loads and distributed loads, static and dynamic
-          simulations, performed convergence studies,
-          processed and plotted results.
+    <details class="sheet" id="sheet-04" open>
+      <summary class="sheet-summary">
+        <div class="sheet-head">
+          <span class="sheet-no">SHEET 04 / 07</span>
+          <span class="sheet-tag">SIM&#8212;FEA</span>
+        </div>
+        <h2>ANSYS Finite Element Analysis</h2>
+      </summary>
+
+      <div class="sheet-body">
+        <div class="highlight-box">
+          <span class="hb-label">At a glance</span>
+          <p class="hb-text">
+            I used ANSYS Mechanical and APDL across a series of studies:
+            A 1D spring system, a 1D cantilever beam,
+            a 2D plate with a hole, and a 3D wing section.
+            I generated and refined meshes, applied boundary conditions,
+            point loads and distributed loads, static and dynamic
+            simulations, performed convergence studies,
+            processed and plotted results.
+          </p>
+        </div>
+        <h3>1D spring system</h3>
+        <p class="desc">
+          Modelled a spring system of three springs and four nodes
+          with the two end nodes fixed. I applied a longitudinal
+          force to one node and ran the simulation to determine
+          the displacement of, and reaction force on each node.
+        </p>
+        <div class="media">
+          <img src="assets/cantilever.png" alt="ANSYS Finite Element Analysis of a cantilever beam">
+          <span class="caption">FIG. 1 — ANSYS Finite Element Analysis of a cantilever beam</span>
+        </div>
+        <h3>Static analysis of a 1D cantilever beam</h3>
+        <p class="desc">
+          I modelled a steel beam H-section with known properties,
+          fixed at one end. In order to identify the optimal beam
+          thickness, I applied a point load of 1000N to the beam,
+          and refined beam thickness until
+          the maximum stress in the beam was less than the
+          stated yield stress of the material. This revealed the
+          optimal beam thickness to save weight as 3.08mm.
+          This beam thickness was then used in subsequent studies.
+        </p>
+        <h3>Varying loading conditions</h3>
+        <p class="desc">
+          I compared the maximum bending moment of the beam (which
+          occurs at the root) for three loading conditions: point,
+          uniform distributed and elliptical loading.
+          Each load had a total magnitude
+          of 1000N. Point loading resulted in the highest maximum bending
+          moment at 268Nm, uniform loading gave 134Nm, and elliptical
+          loading resulted in the lowest at 110Nm.
+        </p>
+        <h3>Mesh independence study</h3>
+        <p class="desc">
+          I increased the number of beam divisions from 5 to 200 and then
+          beyond, and plotted this against maximum stress and tip deflection.
+          I found that tip deflection converged at around 75 divisions,
+          whereas maximum stress did not converge until around 200 divisions.
+          I concluded that usually in FEA, a balance must be established
+          between mesh resolution and computational cost, however with
+          such a simple model in this example this was not necessary and
+          I was able to resolve the model at 50,000 divisions in the same time
+          as 5 to 200.
+        </p>
+        <h3>APDL automation</h3>
+        <p class="desc">
+          In order to expedite the above mesh convergence study up to
+          extremely high resolution, I wrote an APDL script to
+          incrementally reduce element size and output tip deflection
+          and maximum stress for each iteration of a loop.
+        </p>
+        <div class="media">
+          <img src="assets/vonMises.png" alt="ANSYS FEA showing the Von Mises stress distribution of a plate with a hole">
+          <span class="caption">FIG. 2 — ANSYS FEA showing the Von Mises stress distribution of a plate with a hole</span>
+        </div>
+        <h3>2D plate with a hole</h3>
+        <p class="desc">
+          I defined a 2D (1468 x 400mm)plate with an off-centre circular
+          hole cut out, fixed along
+          one edge, with a negative pressure applied along the opposite
+          edge - pulling the plate apart.
+        </p>
+        <h3>Mesh sensitivity study</h3>
+        <p class="desc">
+          For a set of three different hole radii  (60mm, 80mm and 100mm), I ran a mesh-converged
+          study using three mesh sizes. I plotted mesh size against maximum
+          stress, hole radius against maximum stress, and hole radius against
+          safety factor. I found that the maximum stress and 
+          stress-concentration factor increased with
+          hole radius, due to reduced ligament width between the hole
+          and plate edge.
+        </p>
+        <h3>Hole offset study</h3>
+        <p class="desc">
+          I varied the hole offset distance from the centre of the plate
+          in the X and Y directions and investigated the effect on
+          stress-concentration factor (SCF). I discovered, at equal ligament
+          width, the SCF was much higher when the hole was closer to
+          the loaded edge; 4.78 compared to 3.27 on the unloaded side of the
+          centre. This is because stresses near the loaded edge must
+          redistribute over a shorter distance.
+        </p>
+        <h3>Static structural analysis of a 3D wing</h3>
+        <p class="desc">
+          I imported the 3D wing model into ANSYS, alternating between
+          SHELL181 and SHELL281 elements to simulate the wing skin.
+          I applied the fixed boundary condition at the root,
+          and then performed a mesh refinement study on each element type.
+          I adjusted element size and studied convergence of
+          maximum deflection and maximum stress measurements.
+          SHELL181 is a linear first-order shell, generally less accurate than
+          the SHELL281, a quadratic second-order shell. Therefore
+          SHELL181 converged at lower element sizes, up to 0.015m, but was able to resolve
+          higher resolution meshes that caused SHELL281 to fail at 0.05m.
+          This clearly demonstrated the difference in computational cost
+          between the two element types.
+        </p>
+        <div class="media">
+          <img src="assets/convergenceStudy.png" alt="Deflection and stress convergence for SHELL181 vs SHELL281 wing elements">
+          <span class="caption">FIG. 3 — Deflection and stress convergence for SHELL181 vs SHELL281 wing elements</span>
+        </div>
+        <h3>Minimising weight</h3>
+        <p class="desc">
+          For a set of materials and wing skin thicknesses, I compared
+          tip deflection and maximum stress to maximum allowable stress.
+          Maximum allowable stress was calculated using the yield stress
+          of each material, and a standard aerospace safety factor of 1.5.
+          I reduced skin thickness to find the minimum weight required,
+          and corresponding optimal thickness 
+          for each material so that maximum stress was less
+          than allowable stress.
+          For an aircraft, minimising weight is essential to improve
+          payload capacity, or reduce lift requirements and
+          fuel consumption.
+          In this example I concluded that Carbon Fibre was the optimal
+          material, with a minimum thickness of 0.0088m and weight of only
+          10,246kg.
+        </p>
+        <h3>Modal dynamic analysis</h3>
+        <p class="desc">
+          Computed and animated wing oscillations for
+          the first five natural frequencies, and performed a
+          mesh convergence study. This allowed me to visualise
+          the dynamic behaviour of the wing.
         </p>
       </div>
-      <h3>1D spring system</h3>
-      <p class="desc">
-        Modelled a spring system of three springs and four nodes
-        with the two end nodes fixed. I applied a longitudinal
-        force to one node and ran the simulation to determine
-        the displacement of, and reaction force on each node.
-      </p>
-      <div class="media">
-        <img src="assets/cantilever.png" alt="ANSYS Finite Element Analysis of a cantilever beam">
-        <span class="caption">FIG. 6 — ANSYS Finite Element Analysis of a cantilever beam</span>
-      </div>
-      <h3>Static analysis of a 1D cantilever beam</h3>
-      <p class="desc">
-        I modelled a steel beam H-section with known properties,
-        fixed at one end. In order to identify the optimal beam
-        thickness, I applied a point load of 1000N to the beam,
-        and refined beam thickness until
-        the maximum stress in the beam was less than the
-        stated yield stress of the material. This revealed the
-        optimal beam thickness to save weight as 3.08mm.
-        This beam thickness was then used in subsequent studies.
-      </p>
-      <h3>Varying loading conditions</h3>
-      <p class="desc">
-        I compared the maximum bending moment of the beam (which
-        occurs at the root) for three loading conditions: point,
-        uniform distributed and elliptical loading.
-        Each load had a total magnitude
-        of 1000N. Point loading resulted in the highest maximum bending
-        moment at 268Nm, uniform loading gave 134Nm, and elliptical
-        loading resulted in the lowest at 110Nm.
-      </p>
-      <h3>Mesh independence study</h3>
-      <p class="desc">
-        I increased the number of beam divisions from 5 to 200 and then
-        beyond, and plotted this against maximum stress and tip deflection.
-        I found that tip deflection converged at around 75 divisions,
-        whereas maximum stress did not converge until around 200 divisions.
-        I concluded that usually in FEA, a balance must be established
-        between mesh resolution and computational cost, however with
-        such a simple model in this example this was not necessary and
-        I was able to resolve the model at 50,000 divisions in the same time
-        as 5 to 200.
-      </p>
-      <h3>APDL automation</h3>
-      <p class="desc">
-        In order to expedite the above mesh convergence study up to
-        extremely high resolution, I wrote an APDL script for to
-        incrementally reduce element size and output tip deflection
-        and maximum stress for each iteration of a loop.
-      </p>
-      <div class="media">
-        <img src="assets/vonMises.png" alt="ANSYS FEA showing the Von Mises stress distribution of a plate with a hole">
-        <span class="caption">FIG. 7 — ANSYS FEA showing the Von Mises stress distribution of a plate with a hole</span>
-      </div>
-      <h3>2D plate with a hole</h3>
-      <p class="desc">
-        I defined a 2D (1468 x 400mm)plate with an off-centre circular
-        hole cut out, fixed along
-        one edge, with a negative pressure applied along the opposite
-        edge - pulling the plate apart.
-      </p>
-      <h3>Mesh sensitivity study</h3>
-      <p class="desc">
-        For a set of three different hole radii  (60mm, 80mm and 100mm), I ran a mesh-converged
-        study using three mesh sizes. I plotted mesh size against maximum
-        stress, hole radius against maximum stress, and hole radius against
-        safety factor. I found that the maximum stress and 
-        stress-concentration factor increased with
-        hole radius, due to reduced ligament width between the hole
-        and plate edge.
-      </p>
-      <h3>Hole offset study</h3>
-      <p class="desc">
-        I varied the hole offset distance from the centre of the plate
-        in the X and Y directions and investigated the effect on
-        stress-concentration factor (SCF). I discovered, at equal ligament
-        width, the SCF was much higher when the hole was closer to
-        the loaded edge; 4.78 compared to 3.27 on the unloaded side of the
-        centre. This is because stresses near the loaded edge must
-        redistribute over a shorter distance.
-      </p>
-      <h3>Static structural analysis of a 3D wing</h3>
-      <p class="desc">
-        I imported the 3D wing model into ANSYS, alternating between
-        SHELL181 and SHELL281 elements to simulate the wing skin.
-        I applied the fixed boundary condition at the root,
-        and then performed a mesh refinement study on each element type.
-        I adjusted element size and studied convergence of
-        maximum deflection and maximum stress measurements.
-        SHELL181 is a linear first-order shell, generally less accurate than
-        the SHELL281, a quadratic second-order shell. Therefore
-        SHELL181 converged at lower element sizes, up to 0.015m, but was able to resolve
-        higher resolution meshes that caused SHELL281 to fail at 0.05m.
-        This clearly demonstrated the difference in computational cost
-        between the two element types.
-      </p>
-      <div class="media">
-        <img src="assets/convergenceStudy.png" alt="ANSYS FEA convergence study on two types different systems of equations for the same plate with a hole">
-        <span class="caption">FIG. 8 — ANSYS FEA convergence study on two types different systems of equations for the same plate with a hole</span>
-      </div>
-      <h3>Minimising weight</h3>
-      <p class="desc">
-        For a set of materials and wing skin thicknesses, I compared
-        tip deflection and maximum stress to maximum allowable stress.
-        Maximum allowable stress was calculated using the yield stress
-        of each material, and a standard aerospace safety factor of 1.5.
-        I reduced skin thickness to find the minimum weight required,
-        and corresponding optimal thickness 
-        for each material so that maximum stress was less
-        than allowable stress.
-        For an aircraft, minimising weight is essential to improve
-        payload capacity, or reduce lift requirements and
-        fuel consumption.
-        In this example I concluded that Carbon Fibre was the optimal
-        material, with a minimum thickness of 0.0088m and weight of only
-        10,246kg.
-      </p>
-      <h3>Modal dynamic analysis</h3>
-      <p class="desc">
-        Computed and animated wing oscillations for
-        the first five natural frequencies, and performed a
-        mesh convergence study. This allowed me to visualise
-        the dynamic behaviour of the wing.
-      </p>
-    </section>
+    </details>
 
-    <section class="sheet" id="sheet-05">
-      <div class="sheet-head">
-        <span class="sheet-no">SHEET 05 / 07</span>
-        <span class="sheet-tag">CFD&#8212;WD</span>
-      </div>
-      <h2>ANSYS Computational Fluid Dynamics</h2>
-      <div class="highlight-box">
-        <span class="hb-label">At a glance</span>
-        <p class="hb-text">
-          I used ANSYS Fluent inside of ANSYS-Workbench to run
-          Euler CFD calculations for a 3D wing, and to
-          resolve viscous CFD for laminar and turbulent boundary layers
-          along a plate. I generated and imported CAD geometry,
-          meshed the flow domain around the wing, applied boundary conditions,
-          applied flow conditions, solved simulations using various methods,
-          and processed, plotted and compared results to theory.
+    <details class="sheet" id="sheet-05" open>
+      <summary class="sheet-summary">
+        <div class="sheet-head">
+          <span class="sheet-no">SHEET 05 / 07</span>
+          <span class="sheet-tag">TST&#8212;WND</span>
+        </div>
+        <h2>Wind Tunnel Testing</h2>
+      </summary>
+
+      <div class="sheet-body">
+        <div class="media">
+          <img src="assets/windTunnel.jpg" alt="Wind tunnel testing of a wing section">
+          <span class="caption">FIG. 1 — Wind tunnel testing of a wing section</span>        
+        </div>
+              <div class="highlight-box">
+          <span class="hb-label">At a glance</span>
+          <p class="hb-text">
+            I investigated the aerodynamic performance of a NACA 0020
+            based wing section across three wind tunnel experiments:
+            A 2D airfoil lift experiment, flat plate boundary layer
+            analysis, and a full scale wind tunnel test. I compared
+            results across the three experiments and validated them
+            against XFLR5 and accepted theory.
+          </p>
+        </div>
+        <h3>Airfoil lift</h3>
+        <p class="desc">
+          I mounted a NACA 0020 airfoil section in a small, low-speed wind
+          tunnel. Boundary walls at each end of the span ensured
+          it behaved as an effectively infinite 2D span,
+          eliminating 3D effects such as wingtip vortices.
+          I measured surface pressure displayed on an inclined manometer
+          via pressure tappings along
+          the airfoil's upper and lower surface across a range of
+          angles of attack, and numerically integrated this data to
+          obtain lift coefficient.
+        </p>
+        <div class="media">
+          <img src="assets/lift-curve-slope-and-boundary-layers.png" alt="Lift curve slope and boundary layer plots">
+          <span class="caption">FIG. 2 — Lift curve slope and boundary layer plots</span>        
+        </div>
+        <h3>XFoil comparison</h3>
+        <p class="desc">
+          I ran an XFoil analysis of the same airfoil section,
+          and compared the data between my experimental results,
+          XFoil and thin-airfoil theory. All three methods passed
+          through the origin as expected, and shared very similar
+          gradients.
+        </p>
+        <h3>Smooth flat plate boundary layer profile</h3>
+        <p class="desc">
+          I measured the velocity profile of a smooth flat plate
+          at a range of Reynolds numbers
+          by moving a pitot probe positioned at the trailing edge
+          upwards from the plate surface, capturing velocity
+          within and outside the boundary layer. From this data I calculated
+          momentum thickness, and used numerical integration to determine
+          the skin-friction drag coefficient.
+        </p>
+        <h3>Theory comparison</h3>
+        <p class="desc">
+          I graphed the velocity profiles for each Reynolds number,
+          and found that all of the profiles resembled laminar
+          boundary layers, however I compared my skin-friction drag
+          coefficients against laminar and turbulent theory and found
+          that they fit neither. Examining my Reynolds number revealed
+          that my results were close to transition Reynolds numbers,
+          likely explaining the discrepancy.
+        </p>
+        <h3>RJ Mitchell full-scale wind tunnel</h3>
+        <p class="desc">
+          A half-span wing model with the same NACA 0020 airfoil was
+          installed in the university's full-scale wind tunnel.
+          The wing is attached to a force balance which measures
+          the forces on the wing, which I resolved into lift and drag
+          components. The wing is tested through a range of angles of attack,
+          -4° to 20°.
+        </p>
+        <h3>Python data analysis</h3>
+        <p class="desc">
+          By fitting a curve to the wind tunnel data in Python,
+          I calculated the lift and drag coefficients for the
+          full-span wing, used to evaluate maximum lift-drag ratio
+          (aerodynamic efficiency); 12.76 - consistent with
+          published literature for similar wings -
+          and corresponding optimal angle of attack of 6.15°.
+          I calculated the Oswald efficiency of the wing; 0.956, and
+          found it lay within the expected range of 0.700-1.000.
+        </p>
+        <h3>XFLR5 comparison</h3>
+        <p class="desc">
+          This experimental data is compared to XFLR5 results for the
+          full wing in the same flight conditions. Plotting
+          aerodynamic efficiency against angle of attack, my experimental
+          data traced a very similar curve to the XFLR5 results, although
+          shifted by around 2° towards higher angles of attack, but
+          correctly passing through the origin.
+        </p>
+        <h3>Drag approximation as a flat plate</h3>
+        <p class="desc">
+          To estimate the viscous drag coefficient,
+          I doubled the flat plate drag coefficient from the previous
+          experiment to account for the upper and lower wing surfaces.
+          Using this value; 0.0076,
+          I determined that viscous drag was not
+          the dominant drag component of the drag coefficient
+          for the full wing and only made up roughly 30% of the total;
+          0.0256. Instead, the drag coefficient
+          is dominated by form and interference drag at zero lift, making up
+          the remaining 0.0180.
         </p>
       </div>
-      <h3>CAD model generation in OpenVSP</h3>
-      <p class="desc">
-        In OpenVSP, I created a half-span wing model using a
-        NACA 1614 airfoil, and exported the model.
-      </p>
-      <h3>ANSYS-Workbench setup</h3>
-      <p class="desc">
-        Using the "3D" analysis type, I created a new design modeller
-        geometry and imported the half-span wing model from OpenVSP.
-        I then created a cuboid bounding box, starting from the
-        wing root, which
-        extended outwards past the wing tip, and either side of the
-        leading and trailing edges. The wing form was then subtracted
-        from this bounding box to create the flow volume.
-      </p>
-      <div class="media">
-        <img src="assets/mesh.png" alt="ANSYS CFD showing a coarse wing mesh">
-        <span class="caption">FIG. 7 — Coarse wing mesh</span>
-      </div>
-      <h3>Meshing</h3>
-      <p class="desc">
-        I generated initial unstructured meshes
-        with element sizes of 0.2m (coarse), 0.05m (medium) and 0.01m (fine).
-        Separately, I used curvature capture, and ran combined Hessian
-        grid adaptation
-        until convergence to refine the mesh in areas with complicated flows.
-      </p>
-      <h3>ANSYS Fluent</h3>
-      <p class="desc">
-        I used the "pressure-based, steady" solver, with air
-        as the working fluid and simulation set to inviscid.
-        I established the flow speed and angle of incidence
-        (effectively the angle of attack) at the inlet and outlet.
-        I established the wall boundary conditions,
-        initialised tracked variables and initialised the simulation.
-        I ran each case until residuals converged, and repeated
-        for coarse, medium and fine meshes, and then three angles of attack
-        (0°, 4° and 8°) using the medium mesh.
-      </p>
-      <div class="media">
-        <img src="assets/airPressure.png" alt="ANSYS CFD showing the air pressure around the airfoil">
-        <span class="caption">FIG. 8 — ANSYS CFD showing the air pressure around the airfoil</span>
-      </div>
-      <div class="media">
-        <img src="assets/surfacePressure.png" alt="ANSYS CFD showing surface pressure distribution on the wing">
-        <span class="caption">FIG. 9 — ANSYS CFD showing the surface pressure distribution on the wing</span>
-      </div>
-      <h3>Post-processing</h3>
-      <p class="desc">
-        I extracted pressure contour plots for the wing root wall surface,
-        and the wing surface itself. I also plotted pressure coefficient
-        against x position along airfoil surface.
-        I then recorded lift, drag and moment coefficients and
-        compared these results to lifting line theory.
-        The drag coefficient converged towards zero as mesh
-        resolution increased - as expected for an inviscid flow.
-        Lift coefficient however, increased with mesh resolution,
-        likely due to the fact that Fluent resolves vortices in
-        all directions - whereas lifting-line theory is limited
-        to only spanwise vortices.
-      </p>
-      <h3>Flat plate boundary layers</h3>
-      <p class="desc">
-        I ran viscous CFD calculations for a laminar and turbulent boundary
-        layer along the same no-slip flat plate. I extracted 
-        velocity profiles and computed displacement and momentum thickness,
-        and shape factor for each regime. The
-        laminar shape factor (<strong>2.43</strong>) closely matched the
-        theoretical Blasius value (<strong>2.59</strong>), and the turbulent
-        shape factor (<strong>1.33</strong>) fell within the expected
-        1.3-1.4 range. The turbulent velocity profile closely followed the
-        logarithmic
-        law of the wall between <strong>y+ ≈ 40-120</strong>, against
-        a theoretical applicable range of 30-100.
-        Finally I ran the SST transition model to capture the
-        laminar-turbulent transition, which occurred at
-        approximately 70% of the plate's length.
-      </p>
-    </section>
+    </details>
 
-    <section class="sheet" id="sheet-06">
-      <div class="sheet-head">
-        <span class="sheet-no">SHEET 06 / 07</span>
-        <span class="sheet-tag">FLD&#8212;WD</span>
-      </div>
-      <h2>Wind Tunnel Testing</h2>
-      <div class="media">
-        <img src="assets/windTunnel.jpg" alt="Wind tunnel testing of a wing section">
-        <span class="caption">FIG. 9 — Wind tunnel testing of a wing section</span>        
-      </div>
-            <div class="highlight-box">
-        <span class="hb-label">At a glance</span>
-        <p class="hb-text">
-          I investigated the aerodynamic performance of a NACA 0020
-          based wing section across three wind tunnel experiments:
-          A 2D airfoil lift experiment, flat plate boundary layer
-          analysis, and a full scale wind tunnel test. I compared
-          results across the three experiments and validated them
-          against XFLR5 and accepted theory.
+    <details class="sheet" id="sheet-06" open>
+      <summary class="sheet-summary">
+        <div class="sheet-head">
+          <span class="sheet-no">SHEET 06 / 07</span>
+          <span class="sheet-tag">DES&#8212;FXW</span>
+        </div>
+        <h2>Year 1 Fixed Wing UAV design project</h2>
+      </summary>
+
+      <div class="sheet-body">
+        <div class="highlight-box">
+          <span class="hb-label">At a glance</span>
+          <p class="hb-text">
+            Concepted, researched and designed a fixed wing UAV with a
+            suitable payload as part of a group, then individually designed and
+            produced a representative wing structure using XFLR5,
+            SOLIDWORKS, and laser cutting.
+          </p>
+        </div>
+        <h3>Project overview</h3>
+        <p class="desc">
+          Working as a group, we were tasked with defining a UAV concept,
+          function, and appropriate payload. We then individually designed and
+          produced a representative wing structure.
+        </p>
+        <h3>Secondary research</h3>
+        <p class="desc">
+          We chose to design an emergency broadcast UAV, to provide early
+          warnings to people in remote and/or unconnected areas.
+          We then researched natural disasters, and decided to specialise in
+          floods. This decision was made due to suitable warning times,
+          allowing a UAV to be deployed in time,
+          and relatively manageable air conditions for UAV flight.
+          I then researched suitable spar materials for the wing.
+        </p>
+        <h3>Generating a design specification</h3>
+        <p class="desc">
+          As a team we developed a design specification governing performance,
+          safety, cost, environmental impact and form.
+        </p>
+        <div class="media">
+          <img src="assets/Crazy8s.png" alt="8 (Crazy 8s) Ideation sketches for overall UAV design">
+          <span class="caption">FIG. 1 — UAV initial design sketches</span>
+        </div>
+        <h3>Ideation and concept selection</h3>
+        <p class="desc">
+          Each member of the team generated a number of design sketches,
+          before choosing one to present to the group.
+          The team then evaluated each design using a series of go/no-go 
+          questions, and a weighted ranking matrix based 
+          on the design specification subheadings to
+          score each concept and numerically determine the best design.
+        </p>
+        <div class="media">
+          <img src="assets/wings_and_data.png" alt="4 Wing designs in XFLR5 and corresponding lift/drag ratio polar plots">
+          <span class="caption">FIG. 2 — XFLR5 wing design iterations with corresponding lift/drag ratios</span>
+        </div>
+        <h3>Aerodynamic design in XFLR5</h3>
+        <p class="desc">
+          Using XFLR5,
+          I iterated through a series of NACA 4 digit airfoils, and
+          refined the wing geometry in order to maximise aerodynamic
+          efficiency (lift to drag ratio). The primary constraints I had
+          to consider were wing length and aspect ratio, to ensure
+          there was enough internal space to accommodate my spar design.
+        </p>
+        <h3>Python structural analysis</h3>
+        <p class="desc">
+          I calculated the maximum tip deflection of my wing half span
+          using a Python script. The script used numerical integration to
+          resolve the deflection across the wing from 
+          simulated XFLR5 bending moment data for steady level flight,
+          moment of inertia of my chosen spar geometry
+          and Young's modulus of my chosen spar material.
+          I chose medium modulus carbon fibre as my spar
+          material in order to keep tip deflection below
+          10% of wing span, as per the design specification.
+        </p>
+        <h3>SOLIDWORKS model</h3>
+        <p class="desc">
+          I painstakingly reconstructed the wing geometry in SOLIDWORKS,
+          by lofting between the airfoil profiles, oriented carefully
+          to preserve the wing shape, including twist and sweep.
+          The model was fully parameterised - allowing me to adjust the
+          model if necessary.
+        </p>
+        <h3>Laser cutting and assembly</h3>
+        <p class="desc">
+          From the SOLIDWORKS model, I generated drawings for each unique rib
+          section, which I then laser cut from 3mm plywood. I then threaded
+          the ribs onto the dual spar structure and glued them in place.
+        </p>
+        <br>
+        <p class="desc">
+          The finished half-span served as a representative model of
+          my wing design and concluded the project.
         </p>
       </div>
-      <h3>Airfoil lift</h3>
-      <p class="desc">
-        I mounted a NACA 0020 airfoil section in a small, low-speed wind
-        tunnel. Boundary walls at each end of the span ensured
-        it behaved as an effectively infinite 2D span,
-        eliminating 3D effects such as wingtip vortices.
-        I measured surface pressure displayed on an inclined manometer
-        via pressure tappings along
-        the airfoil's upper and lower surface across a range of
-        angles of attack, and numerically integrated this data to
-        obtain lift coefficient.
-      </p>
-      <div class="media">
-        <img src="assets/lift-curve-slope-and-boundary-layers.png" alt="Lift curve slope and boundary layer plots">
-        <span class="caption">FIG. 9 — Lift curve slope and boundary layer plots</span>        
-      </div>
-      <h3>XFoil comparison</h3>
-      <p class="desc">
-        I ran an XFoil analysis of the same airfoil section,
-        and compared the data between my experimental results,
-        XFoil and thin-airfoil theory. All three methods passed
-        through the origin as expected, and shared very similar
-        gradients.
-      </p>
-      <h3>Smooth flat plate boundary layer profile</h3>
-      <p class="desc">
-        I measured the velocity profile of a smooth flat plate
-        at a range of Reynolds numbers
-        by moving a pitot probe positioned at the trailing edge
-        upwards from the plate surface, capturing velocity
-        within and outside the boundary layer. From this data I calculated
-        momentum thickness, and used numerical integration to determine
-        the skin-friction drag coefficient.
-      </p>
-      <h3>Theory comparison</h3>
-      <p class="desc">
-        I graphed the velocity profiles for each Reynolds number,
-        and found that all of the profiles resembled laminar
-        boundary layers, however I compared my skin-friction drag
-        coefficients against laminar and turbulent theory and found
-        that they fit neither. Examining my Reynolds number revealed
-        that my results were close to transition Reynolds numbers,
-        likely explaining the discrepancy.
-      </p>
-      <h3>RJ Mitchell full-scale wind tunnel</h3>
-      <p class="desc">
-        A half-span wing model with the same NACA 0020 airfoil was
-        installed in the university's full-scale wind tunnel.
-        The wing is attached to a force balance which measures
-        the forces on the wing, which I resolved into lift and drag
-        components. The wing is tested through a range of angles of attack,
-        -4° to 20°.
-      </p>
-      <h3>Python data analysis</h3>
-      <p class="desc">
-        By fitting a curve to the wind tunnel data in python,
-        I calculated the lift and drag coefficients for the
-        full-span wing, used to evaluate maximum lift-drag ratio
-        (aerodynamic efficiency); 12.76 - consistent with
-        published literature for similar wings -
-        and corresponding optimal angle of attack of 6.15°.
-        I calculated the Oswald efficiency of the wing; 0.956, and
-        found it lay within the expected range of 0.700-1.000.
-      </p>
-      <h3>XFLR5 comparison</h3>
-      <p class="desc">
-        This experimental data is compared to XFLR5 results for the
-        full wing in the same flight conditions. Plotting
-        aerodynamic efficiency against angle of attack, my experimental
-        data traced a very similar curve to the XFLR5 results, although
-        shifted by around 2° towards higher angles of attack, but
-        correctly passing through the origin.
-      </p>
-      <h3>Drag approximation as a flat plate</h3>
-      <p class="desc">
-        To estimate the viscous drag coefficient,
-        I doubled the flate plate drag coefficient from the previous
-        experiment to account for the upper and lower wing surfaces.
-        Using this value; 0.0076,
-        I determined that viscous drag was not
-        the dominant drag component of the drag coefficient
-        for the full wing and only made up roughly 30% of the total;
-        0.0256. Instead, the drag coefficient
-        is dominated by form and interference drag at zero lift, making up
-        the remaining 0.0180.
-      </p>
-    </section>
+    </details>
 
-    <section class="sheet" id="sheet-07">
-      <div class="sheet-head">
-        <span class="sheet-no">SHEET 07 / 07</span>
-        <span class="sheet-tag">MRC&#8212;WD</span>
-      </div>
-      <h2>Mercedes-AMG Petronas Formula One Team work experience</h2>
-      <div class="media">
-        <img src="assets/steeringWheel.jpg" alt="Mock F1 steering wheel">
-        <span class="caption">FIG. 10 — Mock F1 steering wheel I produced during my work experience</span>
-      </div>
-            <div class="highlight-box">
-        <span class="hb-label">At a glance</span>
-        <p class="hb-text">
-          
+    <details class="sheet" id="sheet-07" open>
+      <summary class="sheet-summary">
+        <div class="sheet-head">
+          <span class="sheet-no">SHEET 07 / 07</span>
+          <span class="sheet-tag">DES&#8212;GLD</span>
+        </div>
+        <h2>Balsa Wood Glider Competition</h2>
+      </summary>
+
+      <div class="sheet-body">
+        <div class="media">
+          <img src="assets/glider.jpg" alt="Balsa Wood Glider">
+          <span class="caption">FIG. 1 — Balsa Wood Glider</span>
+        </div>
+        <div class="highlight-box">
+          <span class="hb-label">At a glance</span>
+          <p class="hb-text">
+            As a team, designed and manufactured a stable
+            glider from a limited quantity of balsa wood, able to
+            reliably strike a wall-mounted target with accuracy,
+            winning the competition
+            outright against around 300 fellow engineering students.
+          </p>
+        </div>
+        <h3>Challenge</h3>
+        <p class="desc">
+          The objective of this project was to design and manufacture a glider with stable and consistent flight characteristics, 
+          from a limited supply of balsa wood, a small amount of adhesive and some blue tack ballast.
+          The aircraft would be hand-launched and needed to fly straight, consistently and accurately to strike the wall-mounted target.
+        </p>
+        <h3>Optimising aerodynamic efficiency</h3>
+        <p class="desc">
+          My team and I developed a glider which maximised the aspect ratio of the main wing within the permitted footprint,
+          resulting in high aerodynamic efficiency.
+        </p>
+        <h3>Iteration and testing for stability</h3>
+        <p class="desc">
+          Following iterative testing and refinement we were able to optimise the mass distribution
+          and resulting centre of gravity to achieve stable flight characteristics.
+        </p>
+        <h3>Competition result</h3>
+        <p class="desc">
+          The final design proved itself reliable and ultimately won the competition - outperforming nearly 300 fellow engineering students.
         </p>
       </div>
-      <h3>Project overview</h3>
-      <p class="desc">
-        
-      </p>
-    </section>
+    </details>
 
   </main>
 
@@ -803,6 +873,7 @@ roll_deg = constrain(roll_deg, -90, 90);
       <a href="mailto:barney.crossman@gmail.com">Email</a>
       <a href="https://github.com/barney-git" target="_blank" rel="noopener">GitHub</a>
       <a href="https://www.linkedin.com/in/barney-crossman-993111366" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="#top">Back to top</a>
     </div>
   </footer>
 

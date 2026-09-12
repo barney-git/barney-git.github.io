@@ -167,7 +167,8 @@ main,
 
 .sheet-index {
   display: flex;
-  gap: 28px;
+  flex-wrap: wrap;
+  gap: 14px 24px; /* row-gap column-gap */
   margin-top: 48px;
   border-top: 1px solid var(--line);
   padding-top: 18px;
@@ -217,6 +218,62 @@ main,
 }
 
 .sheet-tag { color: var(--accent); }
+
+.sheet {
+  border-top: 1px solid var(--line);
+  padding-top: 40px;
+  padding-bottom: 64px;
+}
+
+.sheet-summary {
+  cursor: pointer;
+  list-style: none; /* removes default disclosure triangle */
+}
+
+.sheet-summary::-webkit-details-marker {
+  display: none; /* removes default marker in Safari/Chrome */
+}
+
+.sheet-summary .sheet-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-family: var(--font-data);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  color: var(--paper-dim);
+  margin-bottom: 22px;
+}
+
+.sheet-summary h2 {
+  position: relative;
+  padding-right: 36px; /* room for the chevron */
+}
+
+.sheet-summary h2::after {
+  content: "";
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  border-right: 2px solid var(--line-bright);
+  border-bottom: 2px solid var(--line-bright);
+  transform: translateY(-70%) rotate(45deg); /* chevron pointing down */
+  transition: transform 0.2s ease, border-color 0.15s ease;
+}
+
+.sheet[open] .sheet-summary h2::after {
+  transform: translateY(-30%) rotate(-135deg); /* chevron pointing up when expanded */
+}
+
+.sheet-summary:hover h2::after {
+  border-color: var(--accent);
+}
+
+.sheet-body {
+  padding-top: 24px;
+}
 
 .media {
   margin: 24px 0;
@@ -308,6 +365,10 @@ main,
   font-size: 1rem;
 }
 
+.desc-lead {
+  margin-top: 20px; /* adjust to taste - roughly matches a <br> + normal line gap */
+}
+
 .desc strong {
   color: var(--paper);
   font-weight: 600;
@@ -379,10 +440,38 @@ main,
 .tb-links a {
   color: var(--line-bright);
   text-decoration: none;
+  font-size: 1.4rem;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 1px;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.hero-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.hero-links {
+  display: flex;
+  gap: 24px;
+}
+
+.hero-links a {
+  color: var(--line-bright);
+  text-decoration: none;
   font-size: 0.9rem;
   border-bottom: 1px solid var(--line);
   padding-bottom: 1px;
   transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.hero-links a:hover,
+.hero-links a:focus-visible {
+  color: var(--accent);
+  border-color: var(--accent);
 }
 
 .tb-links a:hover,
@@ -409,9 +498,23 @@ main,
   border-color: var(--accent);
 }
 
+.contact-heading {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3.5vw, 2rem);
+  font-weight: 500;
+  color: var(--paper);
+  margin: 0 0 24px;
+}
+
+.contact-block {
+  border-top: 1px solid var(--line);
+  padding-top: 28px;
+  margin-top: 28px;
+}
+
 /* ---------- Responsive ---------- */
 
 @media (max-width: 560px) {
-  .sheet-index { flex-wrap: wrap; gap: 18px 24px; }
+  .sheet-index { gap: 12px 18px; }
   .tb-row { gap: 20px; }
 }
