@@ -313,6 +313,28 @@ main,
   font-size: 0.85rem;
   line-height: 1.6;
   color: var(--line-bright);
+
+  /* Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: var(--line) var(--bg-panel);
+}
+
+/* Chrome, Safari, Edge */
+.code-block pre::-webkit-scrollbar {
+  height: 8px; /* horizontal scrollbar thickness */
+}
+
+.code-block pre::-webkit-scrollbar-track {
+  background: var(--bg-panel);
+}
+
+.code-block pre::-webkit-scrollbar-thumb {
+  background: var(--line);
+  border-radius: 4px;
+}
+
+.code-block pre::-webkit-scrollbar-thumb:hover {
+  background: var(--line-bright);
 }
 
 .code-block code {
