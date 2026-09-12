@@ -417,7 +417,13 @@ roll_deg = constrain(roll_deg, -90, 90);
       <div class="highlight-box">
         <span class="hb-label">At a glance</span>
         <p class="hb-text">
-          
+          I used ANSYS Mechanical and APDL across a series of studies:
+          A 1D spring system, a 1D cantilever beam,
+          a 2D plate with a hole, and a 3D wing section.
+          I generated and refined meshes, applied boundary conditions,
+          point loads and distributed loads, static and dynamic
+          simulations, performed convergence studies,
+          processed and plotted results.
         </p>
       </div>
       <h3>Project overview</h3>
@@ -433,7 +439,7 @@ roll_deg = constrain(roll_deg, -90, 90);
         Modelled a spring system of three springs and four nodes
         with the two end nodes fixed. I applied a longitudinal
         force to one node and ran the simulation to determine
-        the displacement of, and reaction force on each node
+        the displacement of, and reaction force on each node.
       </p>
       <div class="media">
         <img src="assets/cantilever.png" alt="ANSYS Finite Element Analysis of a cantilever beam">
@@ -452,7 +458,7 @@ roll_deg = constrain(roll_deg, -90, 90);
       </p>
       <h3>Varying loading conditions</h3>
       <p class="desc">
-        I compared the maximium bending moment of the beam (which
+        I compared the maximum bending moment of the beam (which
         occurs at the root) for three loading conditions: point,
         uniform distributed and elliptical loading.
         Each load had a total magnitude
@@ -472,6 +478,13 @@ roll_deg = constrain(roll_deg, -90, 90);
         I was able to resolve the model at 50,000 divisions in the same time
         as 5 to 200.
       </p>
+      <h3>APDL automation</h3>
+      <p class="desc">
+        In order to expedite the above mesh convergence study up to
+        extremely high resolution, I wrote an APDL script for to
+        incrementally reduce element size and output tip deflection
+        and maximum stress for each iteration of a loop.
+      </p>
       <div class="media">
         <img src="assets/vonMises.png" alt="ANSYS FEA showing the Von Mises stress distribution of a plate with a hole">
         <span class="caption">FIG. 7 — ANSYS FEA showing the Von Mises stress distribution of a plate with a hole</span>
@@ -485,7 +498,7 @@ roll_deg = constrain(roll_deg, -90, 90);
       <h3>Mesh sensitivity study</h3>
       <p class="desc">
         For a set of three different hole radii, I ran a mesh-converged
-        study across three mesh sizes. I plotted mesh size against maximum
+        study using three mesh sizes. I plotted mesh size against maximum
         stress, hole radius against maximum stress, and hole radius against
         safety factor. I found that the maximum stress and 
         stress-concentration factor increased with
@@ -502,18 +515,49 @@ roll_deg = constrain(roll_deg, -90, 90);
         centre. This is because stresses near the loaded edge must
         redistribute over a shorter distance.
       </p>
-      <h3></h3>
+      <h3>Static structural analysis of a 3D wing</h3>
       <p class="desc">
-        
-      </p>
-      <h3></h3>
-      <p class="desc">
-        
+        I imported the 3D wing model into ANSYS, alternating between
+        SHELL181 and SHELL281 elements to simulate the wing skin.
+        I applied the fixed boundary condition at the root,
+        and then performed a mesh refinement study on each element type.
+        I adjusted element size and studied convergence of
+        maximum deflection and maximum stress measurements.
+        SHELL181 is a linear first-order shell, generally less accurate than
+        the SHELL281, a quadratic second-order shell. Therefore
+        SHELL181 converged at lower element sizes, up to 0.015m, but was able to resolve
+        higher resolution meshes that caused SHELL281 to fail at 0.05m.
+        This clearly demonstrated the difference in computational cost
+        between the two element types.
       </p>
       <div class="media">
         <img src="assets/convergenceStudy.png" alt="ANSYS FEA convergence study on two types different systems of equations for the same plate with a hole">
         <span class="caption">FIG. 8 — ANSYS FEA convergence study on two types different systems of equations for the same plate with a hole</span>
       </div>
+      <h3>Minimising weight</h3>
+      <p class="desc">
+        For a set of materials and wing skin thicknesses, I compared
+        tip deflection and maximum stress to maximum allowable stress.
+        Maximum allowable stress was calculated using the yield stress
+        of each material, and a standard aerospace safety factor of 1.5.
+        I reduced skin thickness to find the minimum weight required,
+        and corresponding optimal thickness 
+        for each material so that maximum stress was less
+        than allowable stress.
+        For an aircraft, minimising weight is essential to improve
+        payload capacity, or reduce lift requirements and
+        fuel consumption.
+        In this example I concluded that Carbon Fibre was the optimal
+        material, with a minimum thickness of 0.0088m and weight of only
+        10,246kg.
+      </p>
+      <h3>Modal dynamic analysis</h3>
+      <p class="desc">
+        Computed and animated wing oscillations for
+        the first five natural frequencies, and performed a
+        mesh convergence study. This allowed me to visualise
+        the dynamic behaviour of the wing.
+      </p>
     </section>
 
     <section class="sheet" id="sheet-05">
